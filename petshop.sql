@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-11-2024 a las 23:09:26
+-- Tiempo de generación: 20-11-2024 a las 00:01:32
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -28,10 +28,10 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `movimientostock` (
-  `IDmovimiento` int(11) NOT NULL,
-  `IDProducto` int(250) NOT NULL,
+  `IDMovimiento` int(11) NOT NULL,
+  `IDProducto` int(11) NOT NULL,
   `TipoMovimiento` varchar(250) NOT NULL,
-  `Cantidad` int(250) NOT NULL,
+  `Cantidad` int(11) NOT NULL,
   `FechaMovimiento` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -74,7 +74,8 @@ CREATE TABLE `proveedor` (
 -- Indices de la tabla `movimientostock`
 --
 ALTER TABLE `movimientostock`
-  ADD PRIMARY KEY (`IDmovimiento`);
+  ADD PRIMARY KEY (`IDMovimiento`),
+  ADD KEY `fk_IDProducto` (`IDProducto`);
 
 --
 -- Indices de la tabla `productos`
@@ -96,7 +97,7 @@ ALTER TABLE `proveedor`
 -- AUTO_INCREMENT de la tabla `movimientostock`
 --
 ALTER TABLE `movimientostock`
-  MODIFY `IDmovimiento` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IDMovimiento` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
@@ -109,6 +110,16 @@ ALTER TABLE `productos`
 --
 ALTER TABLE `proveedor`
   MODIFY `IDProveedor` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `movimientostock`
+--
+ALTER TABLE `movimientostock`
+  ADD CONSTRAINT `fk_IDProducto` FOREIGN KEY (`IDProducto`) REFERENCES `productos` (`IDProducto`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
