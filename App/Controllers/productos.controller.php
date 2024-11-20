@@ -16,4 +16,10 @@ class ProductosController{
         $productos = $this->model->getProductos();
         return $this->view->response($productos);
     }
+
+    public function productosId($req, $res){
+        $id_productos = $req->params->id;
+        $productoId = $this->model->getProductosId($id_productos);
+        $this->view->response($productoId);
+    }
 }

@@ -11,6 +11,15 @@ class ProductosModel {
 
     public function getProductos(){
         $query = $this->db->prepare('SELECT * FROM productos');
+        $query->execute(); // Ejecutar la consulta
+        return $query->fetchAll(PDO::FETCH_OBJ); // Retornar todos los productos como un arreglo asociativo
     }
-
+    
+    public function getProductosId($id_productos){
+        $query = $this->db->prepare('SELECT * FROM productos WHERE IDProducto = ?');
+        $query->execute([$id_productos]);
+        
+        // Devolver el primer resultado, que debe ser la película con ese ID
+        return $query->fetch(PDO::FETCH_OBJ);
+    }
 }
