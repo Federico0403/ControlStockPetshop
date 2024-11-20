@@ -27,6 +27,52 @@
     </div>
   </nav>
 
+  <!-- Formulario para modificar producto (oculto inicialmente) -->
+<!-- Formulario de Modificación de Producto (inicialmente oculto) -->
+<div id="formularioModificar" style="display: none;">
+  <h3>Modificar Producto</h3>
+  <form id="formModificarProducto">
+      <input type="hidden" id="idProductoModificar">
+      <div class="form-group">
+          <label for="nombreProducto">Nombre</label>
+          <input type="text" id="nombreProducto" class="form-control">
+      </div>
+      <div class="form-group">
+          <label for="marcaProducto">Marca</label>
+          <input type="text" id="marcaProducto" class="form-control">
+      </div>
+      <div class="form-group">
+          <label for="tipoProducto">Tipo</label>
+          <input type="text" id="tipoProducto" class="form-control">
+      </div>
+      <div class="form-group">
+          <label for="precioProducto">Precio</label>
+          <input type="number" id="precioProducto" class="form-control">
+      </div>
+      <div class="form-group">
+          <label for="stockActualProducto">Stock Actual</label>
+          <input type="number" id="stockActualProducto" class="form-control">
+      </div>
+      <div class="form-group">
+          <label for="stockMinimoProducto">Stock Mínimo</label>
+          <input type="number" id="stockMinimoProducto" class="form-control">
+      </div>
+      <div class="form-group">
+          <label for="descripcionProducto">Descripción</label>
+          <input type="text" id="descripcionProducto" class="form-control">
+      </div>
+      <div class="form-group">
+          <label for="fechaAltaProducto">Fecha de Alta</label>
+          <input type="date" id="fechaAltaProducto" class="form-control">
+      </div>
+      <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+      <button type="button" id="cancelarModificar" class="btn btn-secondary">Cancelar</button>
+  </form>
+</div>
+
+
+
+
   <div class="container mt-4">
     <h1 class="text-center mb-4">Control de Stock</h1>
 

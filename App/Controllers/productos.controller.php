@@ -66,62 +66,27 @@ class ProductosController{
     
     
 
-    public function modificar($req, $res){
-    
+    public function modificar($req, $res) {
         $body = $req->body;
         $id_producto = $req->params->id;
     
-        // Obtengo el producto específico por id
+        // Validar los datos
+        if (empty($body['Nombre']) || empty($body['Marca']) || empty($body['Tipo']) || 
+            empty($body['Precio']) || empty($body['StockActual']) || empty($body['StockMinimo']) ||
+            empty($body['Descripcion']) || empty($body['FechaAlta'])) {
+            return $this->view->response('Faltan campos obligatorios', 400);
+        }
+    
+        // Llamar al modelo para actualizar el producto
+        $this->model->updateProductos($id_producto, $body['Nombre'], $body['Marca'], $body['Tipo'], $body['Precio'], 
+                                      $body['StockActual'], $body['StockMinimo'], $body['Descripcion'], $body['FechaAlta']);
+    
+        // Obtener el producto actualizado
         $producto = $this->model->getProductosId($id_producto);
-    
-        if (!$producto) {
-            return $this->view->response("No existe el producto con el id = $id_producto", 404);
-        }
-    
-        // Validación de los campos del formulario
-        if (empty($body['Nombre'])) {
-            return $this->view->response('Falta completar el nombre del producto', 404);
-        }
-        if (empty($body['Marca'])) {
-            return $this->view->response('Falta completar la marca del producto', 404);
-        }
-        if (empty($body['Tipo'])) {  // Asegurando que 'Tipo' sea enviado
-            return $this->view->response('Falta completar el tipo del producto', 404);
-        }
-        if (empty($body['Precio'])) {
-            return $this->view->response('Falta completar el precio del producto', 404);
-        }
-        if (empty($body['StockActual'])) {
-            return $this->view->response('Falta completar la cantidad actual en stock', 404);
-        }
-        if (empty($body['StockMinimo'])) {
-            return $this->view->response('Falta completar la cantidad mínima en stock', 404);
-        }
-        if (empty($body['Descripcion'])) {
-            return $this->view->response('Falta completar la descripción del producto', 404);
-        }
-        if (empty($body['FechaAlta'])) {  // Asegurando que 'FechaAlta' esté presente
-            return $this->view->response('Falta completar la fecha de alta del producto', 404);
-        }
-    
-        // Obtengo los datos del formulario
-        $nombre_producto = $body['Nombre'];
-        $marca = $body['Marca'];
-        $tipo = $body['Tipo'];
-        $precio = $body['Precio'];
-        $stock_actual = $body['StockActual'];
-        $stock_minimo = $body['StockMinimo'];
-        $descripcion = $body['Descripcion'];
-        $fecha_alta = $body['FechaAlta'];  // Tomando la fecha desde el body
-    
-        // Llamo al modelo para actualizar los datos
-        $this->model->updateProductos($id_producto, $nombre_producto, $marca, $tipo, $precio, $stock_actual, $stock_minimo, $descripcion, $fecha_alta);
-    
-        // Obtengo el producto actualizado
-        $producto = $this->model->getProductosId($id_producto);
-    
+        
         return $this->view->response($producto);
     }
+    
 
     public function borrar($req, $res){
         $id_producto = $req->params->id;

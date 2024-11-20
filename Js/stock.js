@@ -168,6 +168,118 @@ function showProductos() {
 }
 
 
+// Mostrar el formulario de modificación y cargar los datos del producto
+async function modificarProducto(idProducto) {
+    // Mostrar el formulario de modificación
+    document.getElementById("formularioModificar").style.display = "block";
+
+    try {
+        const response = await fetch(`${BASE_URL}productos/${idProducto}`);
+        if (!response.ok) {
+            throw new Error("Error al obtener el producto");
+        }
+
+        // Obtener los datos del producto
+        const producto = await response.json();
+
+        // Rellenar el formulario con los datos del producto
+        document.getElementById("idProductoModificar").value = producto.IDProducto;
+        document.getElementById("nombreProducto").value = producto.Nombre;
+        document.getElementById("marcaProducto").value = producto.Marca;
+        document.getElementById("tipoProducto").value = producto.Tipo;
+        document.getElementById("precioProducto").value = producto.Precio;
+        document.getElementById("stockActualProducto").value = producto.StockActual;
+        document.getElementById("stockMinimoProducto").value = producto.StockMinimo;
+        document.getElementById("descripcionProducto").value = producto.Descripcion;
+        document.getElementById("fechaAltaProducto").value = producto.FechaAlta;
+    } catch (error) {
+        console.error("Error al cargar los datos del producto:", error);
+    }
+}
+
+// Evento para cancelar la edición y ocultar el formulario
+document.getElementById("cancelarModificar").addEventListener("click", function() {
+    // Ocultar el formulario de modificación
+    document.getElementById("formularioModificar").style.display = "none";
+});
+
+// Función para enviar los datos modificados del formulario
+document.getElementById("formModificarProducto").addEventListener("submit", async function(event) {
+    event.preventDefault();  // Evitar que el formulario se envíe de manera tradicional
+
+    const idProducto = document.getElementById("idProductoModificar").value;
+    const nombre = document.getElementById("nombreProducto").value;
+    const marca = document.getElementById("marcaProducto").value;
+    const tipo = document.getElementById("tipoProducto").value;
+    const precio = document.getElementById("precioProducto").value;
+    const stockActual = document.getElementById("stockActualProducto").value;
+    const stockMinimo = document.getElementById("stockMinimoProducto").value;
+    const descripcion = document.getElementById("descripcionProducto").value;
+    const fechaAlta = document.getElementById("fechaAltaProducto").value;
+
+    // Enviar la solicitud de modificación al servidor
+    try {
+        const response = await fetch(`${BASE_URL}productos/${idProducto}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                Nombre: nombre,
+                Marca: marca,
+                Tipo: tipo,
+                Precio: precio,
+                StockActual: stockActual,
+                StockMinimo: stockMinimo,
+                Descripcion: descripcion,
+                FechaAlta: fechaAlta
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error("Error al modificar el producto");
+        }
+
+        // Ocultar el formulario y recargar los productos
+        document.getElementById("formularioModificar").style.display = "none";
+        getAllProductos();  // Recargar los productos después de la modificación
+    } catch (error) {
+        console.error("Error al modificar el producto:", error);
+    }
+});
+
+
+async function guardarModificaciones(idProducto) {
+    const productoModificado = {
+        Nombre: document.getElementById("nombreProducto").value,
+        Marca: document.getElementById("marcaProducto").value,
+        Precio: document.getElementById("precioProducto").value,
+        StockActual: document.getElementById("stockActualProducto").value,
+        StockMinimo: document.getElementById("stockMinimoProducto").value,
+        Descripcion: document.getElementById("descripcionProducto").value,
+        Tipo: document.getElementById("tipoProducto").value,
+        FechaAlta: document.getElementById("fechaAltaProducto").value
+    };
+
+    try {
+        const response = await fetch(`${BASE_URL}productos/${idProducto}`, {
+            method: "PUT",  // Usamos PUT para modificar
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(productoModificado)
+        });
+
+        if (!response.ok) {
+            throw new Error("Error al modificar el producto");
+        }
+
+        alert("Producto modificado con éxito");
+        getAllProductos();  // Actualizamos la lista de productos después de la modificación
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 function showProveedores() {
     // Limpiar los filtros de marcas antes de mostrar los proveedores
