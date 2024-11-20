@@ -13,9 +13,19 @@ class ProductosController{
     }
 
     public function productos(){
-        $productos = $this->model->getProductos();
+        // Comprobar si se ha pasado el parámetro de marca en la URL
+        if (isset($_GET['marca']) && !empty($_GET['marca'])) {
+            $marcas = explode(",", $_GET['marca']);  // Convierte las marcas en un array
+            // Obtener productos filtrados por marca
+            $productos = $this->model->getProductosByMarca($marcas);
+        } else {
+            // Si no hay filtro, obtener todos los productos
+            $productos = $this->model->getProductos();
+        }
+    
         return $this->view->response($productos);
     }
+    
 
     public function productosId($req, $res){
         $id_productos = $req->params->id;

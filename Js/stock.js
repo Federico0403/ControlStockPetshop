@@ -10,14 +10,19 @@ let productos = [];
 let proveedores = [];
 let movimientos = [];
 
-async function getAllProductos() {
+async function getAllProductos(marcas = []) {
     try {
-        const response = await fetch(BASE_URL + "productos");
+        // Construir la URL con los parámetros de marcas seleccionadas
+        let url = BASE_URL + "productos";
+        if (marcas.length > 0) {
+            url += "?marca=" + marcas.join(",");
+        }
+
+        const response = await fetch(url);
         if (!response.ok) {
             throw new Error("Error al obtener los productos");
         }
         productos = await response.json();
-        console.log(productos);  // Verifica los datos recibidos
         showMarcas();
         showProductos();
     } catch (error) {
@@ -56,8 +61,6 @@ function showMarcas() {
     let div = document.getElementById("filtrosMarca");
     div.innerHTML = "";
 
-    console.log("Productos:", productos);  // Verifica si 'productos' tiene datos
-
     let marcasUnicas = new Set();
 
     productos.forEach(producto => {
@@ -84,9 +87,23 @@ function showMarcas() {
     marcasHTML += `</div>`;  // Cerrar la fila
 
     div.innerHTML = marcasHTML;
+
+    // Añadir evento a los checkboxes para filtrar productos por marca
+    document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+        checkbox.addEventListener('change', filterProductosByMarca);
+    });
 }
 
+function filterProductosByMarca() {
+    // Obtener todas las marcas seleccionadas
+    let marcasSeleccionadas = [];
+    document.querySelectorAll('input[type="checkbox"]:checked').forEach(checkbox => {
+        marcasSeleccionadas.push(checkbox.value);
+    });
 
+    // Llamar a getAllProductos con las marcas seleccionadas
+    getAllProductos(marcasSeleccionadas);
+}
 
 function showProductos() {
     let div = document.getElementById("contenedorMostrar");
@@ -118,9 +135,6 @@ function showProductos() {
 
     div.innerHTML += `<p class="mt-3 text-center"><small>Mostrando ${productos.length} Productos</small></p>`;
 }
-
-
-
 
 function showProveedores() {
     // Limpiar los filtros de marcas antes de mostrar los proveedores
@@ -156,9 +170,6 @@ function showProveedores() {
     div.innerHTML += `<p class="mt-3 text-center"><small>Mostrando ${proveedores.length} Proveedores</small></p>`;
 }
 
-
-
-
 function showMovimientos() {
     let div = document.getElementById("contenedorMostrar");
     div.innerHTML = "";
@@ -181,4 +192,4 @@ function showMovimientos() {
     div.innerHTML += `<p class="mt-3 text-center"><small>Mostrando ${movimientos.length} Movimientos</small></p>`;
 }
 
-getAllProductos();
+getAllProductos(); 

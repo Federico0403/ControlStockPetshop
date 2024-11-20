@@ -9,11 +9,23 @@ class ProductosModel {
         $this->db = new PDO("mysql:host=" . MYSQL_HOST . ";dbname=" . MYSQL_DB . ";charset=utf8", MYSQL_USER, MYSQL_PASS);
     }
 
-    public function getProductos(){
-        $query = $this->db->prepare('SELECT * FROM productos');
-        $query->execute(); // Ejecutar la consulta
-        return $query->fetchAll(PDO::FETCH_OBJ); // Retornar todos los productos como un arreglo asociativo
+    public function getProductosByMarca($marcas) {
+        // Preparar la consulta SQL para filtrar productos por marca
+        $marcas_str = implode("','", $marcas);  // Convertir el array de marcas en una cadena de texto (como 'Marca1','Marca2')
+        $query = "SELECT * FROM productos WHERE Marca IN ('$marcas_str')";  // Filtrar por marca
+
+        // Ejecutar la consulta y devolver los productos filtrados
+        $result = $this->db->query($query);
+        return $result->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    // Método para obtener todos los productos (sin filtro)
+    public function getProductos() {
+        $query = "SELECT * FROM productos";
+        $result = $this->db->query($query);
+        return $result->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     
     public function getProductosId($id_productos){
         $query = $this->db->prepare('SELECT * FROM productos WHERE IDProducto = ?');
