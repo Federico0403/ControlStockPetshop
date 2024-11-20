@@ -18,6 +18,7 @@ async function getAllProductos() {
         }
         productos = await response.json();
         console.log(productos);  // Verifica los datos recibidos
+        showMarcas();
         showProductos();
     } catch (error) {
         console.log(error);
@@ -51,37 +52,90 @@ async function getAllMovimientos() {
     }
 }
 
+function showMarcas() {
+    let div = document.getElementById("filtrosMarca");
+    div.innerHTML = "";
+
+    console.log("Productos:", productos);  // Verifica si 'productos' tiene datos
+
+    let marcasUnicas = new Set();
+
+    productos.forEach(producto => {
+        if (producto.Marca) {
+            marcasUnicas.add(producto.Marca);
+        }
+    });
+
+    // Crear una fila para las marcas
+    let marcasHTML = `<div class="row">`;
+
+    marcasUnicas.forEach(marca => {
+        marcasHTML += `
+        <div class="col-md-3 mb-3"> <!-- Cada marca en una columna con espacio -->
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="${marca}" id="marca-${marca}">
+                <label class="form-check-label" for="marca-${marca}">
+                    ${marca}
+                </label>
+            </div>
+        </div>`;
+    });
+
+    marcasHTML += `</div>`;  // Cerrar la fila
+
+    div.innerHTML = marcasHTML;
+}
+
+
+
 function showProductos() {
     let div = document.getElementById("contenedorMostrar");
     div.innerHTML = "";
+
+    // Crear los encabezados
+    let encabezados = `
+        <div class="row mb-3 text-center">
+            <div class="col-md-3"><strong>Marca</strong></div>
+            <div class="col-md-2"><strong>Stock</strong></div>
+            <div class="col-md-2"><strong>Precio</strong></div>
+            <div class="col-md-3"><strong>Tipo</strong></div>
+        </div>
+    `;
+    div.innerHTML += encabezados;
+
+    // Recorrer productos y crear filas
     productos.forEach(producto => {
-        let html = ` 
-        <div class="col-md-4 mb-4">
-            <div class='card'>
-                <div class='card-body'>
-                    <h5 class='card-title'>
-                        <a href='#' data-id='${producto.IDProducto}' class='text-decoration-none titulo text-danger btnDetail'>${producto.Nombre || 'Nombre no disponible'}</a>
-                    </h5>
-                    <p class='card-text'>Marca: ${producto.Marca || 'Marca no disponible'}</p>
-                    <p class='card-text'>Stock Actual: ${producto.StockActual || 'Stock no disponible'}</p>
-                    <p class='card-text'>Precio: ${producto.Precio || 'Precio no disponible'}</p>
-                    <p class='card-text'>Tipo: ${producto.Tipo || 'Tipo no disponible'}</p>
-                </div>
-            </div>
-        </div>`;
+        let html = `
+        <div class="row mb-3 text-center">
+            <div class="col-md-3">${producto.Marca || 'Marca no disponible'}</div>
+            <div class="col-md-2">${producto.StockActual || 'Stock no disponible'}</div>
+            <div class="col-md-2">${producto.Precio ? `$${producto.Precio}` : 'Precio no disponible'}</div>
+            <div class="col-md-3">${producto.Tipo || 'Tipo no disponible'}</div>
+        </div>
+        `;
         div.innerHTML += html;
     });
+
     div.innerHTML += `<p class="mt-3 text-center"><small>Mostrando ${productos.length} Productos</small></p>`;
 }
 
 
 
+
 function showProveedores() {
+    // Limpiar los filtros de marcas antes de mostrar los proveedores
+    let filtrosMarcaDiv = document.getElementById("filtrosMarca");
+    filtrosMarcaDiv.innerHTML = "";
+
     let div = document.getElementById("contenedorMostrar");
     div.innerHTML = "";
+
+    // Crear una fila para los proveedores
+    let proveedoresHTML = `<div class="row">`;
+
     proveedores.forEach(proveedor => {
-        let html = ` 
-        <div class="col-md-4 mb-4">
+        proveedoresHTML += ` 
+        <div class="col-md-3 mb-4"> <!-- Cada proveedor en una columna con espacio -->
             <div class='card'>
                 <div class='card-body'>
                     <h5 class='card-title'>
@@ -92,10 +146,17 @@ function showProveedores() {
                 </div>
             </div>
         </div>`;
-        div.innerHTML += html;
     });
+
+    proveedoresHTML += `</div>`;  // Cerrar la fila
+
+    div.innerHTML = proveedoresHTML;
+
+    // Mostrar la cantidad de proveedores
     div.innerHTML += `<p class="mt-3 text-center"><small>Mostrando ${proveedores.length} Proveedores</small></p>`;
 }
+
+
 
 
 function showMovimientos() {
