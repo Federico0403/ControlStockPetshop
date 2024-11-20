@@ -12,6 +12,9 @@ let movimientos = [];
 
 async function getAllProductos(marcas = []) {
     try {
+        // Guardar los valores seleccionados de los checkboxes
+        const marcasSeleccionadas = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(checkbox => checkbox.value);
+        
         // Construir la URL con los parámetros de marcas seleccionadas
         let url = BASE_URL + "productos";
         if (marcas.length > 0) {
@@ -23,12 +26,13 @@ async function getAllProductos(marcas = []) {
             throw new Error("Error al obtener los productos");
         }
         productos = await response.json();
-        showMarcas();
+        showMarcas(marcasSeleccionadas); // Pasar las marcas seleccionadas al actualizar la vista
         showProductos();
     } catch (error) {
         console.log(error);
     }
 }
+
 
 
 async function getAllProveedores() {
@@ -57,7 +61,7 @@ async function getAllMovimientos() {
     }
 }
 
-function showMarcas() {
+function showMarcas(marcasSeleccionadas = []) {
     let div = document.getElementById("filtrosMarca");
     div.innerHTML = "";
 
@@ -76,7 +80,8 @@ function showMarcas() {
         marcasHTML += `
         <div class="col-md-3 mb-3"> <!-- Cada marca en una columna con espacio -->
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="${marca}" id="marca-${marca}">
+                <input class="form-check-input" type="checkbox" value="${marca}" id="marca-${marca}"
+                ${marcasSeleccionadas.includes(marca) ? "checked" : ""}>  <!-- Mantener seleccionadas las marcas filtradas -->
                 <label class="form-check-label" for="marca-${marca}">
                     ${marca}
                 </label>
@@ -93,6 +98,7 @@ function showMarcas() {
         checkbox.addEventListener('change', filterProductosByMarca);
     });
 }
+
 
 function filterProductosByMarca() {
     // Obtener todas las marcas seleccionadas
