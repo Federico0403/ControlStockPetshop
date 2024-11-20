@@ -23,11 +23,11 @@ $router->addRoute('productos/:id', 'PUT', 'ProductosController', 'modificar');  
 $router->addRoute('productos/:id', 'DELETE', 'ProductosController', 'borrar');  // Borrar producto
 
 // Proveedores
-$router->addRoute('proveedores', 'GET', 'ProveedorController', 'proveedor');  // Ver todos los proveedores
-$router->addRoute('proveedores/:id', 'GET', 'ProveedorController', 'proveedorId');  // Ver proveedor por ID
-$router->addRoute('proveedores', 'POST', 'ProveedorController', 'agregar');  // Agregar nuevo proveedor
-$router->addRoute('proveedores/:id', 'PUT', 'ProveedorController', 'modificar');  // Modificar proveedor
-$router->addRoute('proveedores/:id', 'DELETE', 'ProveedorController', 'borrar');  // Borrar proveedor
+$router->addRoute('proveedores', 'GET', 'ProveedoresController', 'proveedor');  // Ver todos los proveedores
+$router->addRoute('proveedores/:id', 'GET', 'ProveedoresController', 'proveedorId');  // Ver proveedor por ID
+$router->addRoute('proveedores', 'POST', 'ProveedoresController', 'agregar');  // Agregar nuevo proveedor
+$router->addRoute('proveedores/:id', 'PUT', 'ProveedoresController', 'modificar');  // Modificar proveedor
+$router->addRoute('proveedores/:id', 'DELETE', 'ProveedoresController', 'borrar');  // Borrar proveedor
 
 $router->route($_GET['resource'], $_SERVER['REQUEST_METHOD']);
 // En un futuro, puedes agregar rutas para Movimientos de Stock
