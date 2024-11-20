@@ -111,6 +111,26 @@ function filterProductosByMarca() {
     getAllProductos(marcasSeleccionadas);
 }
 
+async function eliminarProducto(idProducto) {
+    if (confirm){
+        try {
+            const response = await fetch(`${BASE_URL}productos/${idProducto}`, {
+                method: "DELETE"
+            });
+
+            if (!response.ok) {
+                throw new Error("Error al eliminar el producto");
+            }
+
+            // Si la eliminación fue exitosa, volver a cargar los productos
+            getAllProductos();  // Volver a cargar los productos después de eliminar
+        } catch (error) {
+            console.error("Error al eliminar producto:", error);
+        }
+    }
+}
+
+// Luego el código para mostrar los productos
 function showProductos() {
     let div = document.getElementById("contenedorMostrar");
     div.innerHTML = "";
@@ -122,11 +142,12 @@ function showProductos() {
             <div class="col-md-2"><strong>Stock</strong></div>
             <div class="col-md-2"><strong>Precio</strong></div>
             <div class="col-md-3"><strong>Tipo</strong></div>
+            <div class="col-md-2"><strong>Acciones</strong></div>  <!-- Nueva columna para los botones -->
         </div>
     `;
     div.innerHTML += encabezados;
 
-    // Recorrer productos y crear filas
+    // Recorrer productos y crear filas con botones de eliminar y modificar
     productos.forEach(producto => {
         let html = `
         <div class="row mb-3 text-center">
@@ -134,6 +155,10 @@ function showProductos() {
             <div class="col-md-2">${producto.StockActual || 'Stock no disponible'}</div>
             <div class="col-md-2">${producto.Precio ? `$${producto.Precio}` : 'Precio no disponible'}</div>
             <div class="col-md-3">${producto.Tipo || 'Tipo no disponible'}</div>
+            <div class="col-md-2">
+                <button class="btn btn-warning btn-sm" onclick="modificarProducto(${producto.IDProducto})">Modificar</button>
+                <button class="btn btn-danger btn-sm" onclick="eliminarProducto(${producto.IDProducto})">Eliminar</button>
+            </div>
         </div>
         `;
         div.innerHTML += html;
@@ -141,6 +166,8 @@ function showProductos() {
 
     div.innerHTML += `<p class="mt-3 text-center"><small>Mostrando ${productos.length} Productos</small></p>`;
 }
+
+
 
 function showProveedores() {
     // Limpiar los filtros de marcas antes de mostrar los proveedores
