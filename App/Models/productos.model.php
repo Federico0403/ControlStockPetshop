@@ -35,34 +35,33 @@ class ProductosModel {
         return $query->fetch(PDO::FETCH_OBJ);
     }
 
-    public function insertProducto($nombre, $marca, $precio, $stockActual, $stockMinimo, $descripcion, $tipo, $fechaAlta) {
+    public function insertProducto($nombre, $marca, $precio, $descripcion, $tipo) {
         // Inserta el producto en la base de datos
         $query = $this->db->prepare(
-            'INSERT INTO productos (Nombre, Marca, Precio, StockActual, StockMinimo, Descripcion, Tipo, FechaAlta) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)'
+            'INSERT INTO productos (Nombre, Marca, Precio, Descripcion, Tipo) 
+            VALUES (?, ?, ?, ?, ?)'  // El número de ? debe coincidir con el número de columnas
         );
-        $query->execute([$nombre, $marca, $precio, $stockActual, $stockMinimo, $descripcion, $tipo, $fechaAlta]);
+        $query->execute([$nombre, $marca, $precio, $descripcion, $tipo]);
     
         // Retorna el ID del producto insertado
         return $this->db->lastInsertId();
     }
     
-    public function updateProductos($id_producto, $nombre_producto, $marca, $tipo, $precio, $stock_actual, $stock_minimo, $descripcion, $fecha_alta) {
+    
+    public function updateProductos($id_producto, $nombre_producto, $marca, $tipo, $precio, $descripcion) {
         // Preparar la consulta para actualizar el producto
         $query = $this->db->prepare('UPDATE productos SET 
                                         Nombre = ?, 
                                         Marca = ?, 
                                         Tipo = ?, 
                                         Precio = ?, 
-                                        StockActual = ?, 
-                                        StockMinimo = ?, 
-                                        Descripcion = ?, 
-                                        FechaAlta = ? 
+                                        Descripcion = ? 
                                       WHERE IDProducto = ?');
-    
+        
         // Ejecutar la consulta con los parámetros correspondientes
-        $query->execute([$nombre_producto, $marca, $tipo, $precio, $stock_actual, $stock_minimo, $descripcion, $fecha_alta, $id_producto]);
+        $query->execute([$nombre_producto, $marca, $tipo, $precio, $descripcion, $id_producto]);
     }
+    
 
     public function cleanProducto($id_producto){
         // Ejecutar el DELETE para eliminar el producto por su ID

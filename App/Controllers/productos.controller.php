@@ -37,9 +37,8 @@ class ProductosController{
         $body = $req->body;
     
         // Asegúrate de que todos los campos estén presentes en el body
-        if (empty($body['Nombre']) || empty($body['Marca']) || empty($body['Precio']) ||
-            empty($body['StockActual']) || empty($body['StockMinimo']) || empty($body['Descripcion']) ||
-            empty($body['Tipo']) || empty($body['FechaAlta'])) {
+        if (empty($body['Nombre']) || empty($body['Marca']) || empty($body['Precio']) || empty($body['Descripcion']) ||
+            empty($body['Tipo'])) {
             
             return $this->view->response('Faltan campos obligatorios', 400);
         }
@@ -48,14 +47,11 @@ class ProductosController{
         $nombre = $body['Nombre'];
         $marca = $body['Marca'];
         $precio = $body['Precio'];
-        $stockActual = $body['StockActual'];
-        $stockMinimo = $body['StockMinimo'];
         $descripcion = $body['Descripcion'];
         $tipo = $body['Tipo'];
-        $fechaAlta = $body['FechaAlta'];
     
         // Llamar al modelo para insertar el producto
-        $idProducto = $this->model->insertProducto($nombre, $marca, $precio, $stockActual, $stockMinimo, $descripcion, $tipo, $fechaAlta);
+        $idProducto = $this->model->insertProducto($nombre, $marca, $precio, $descripcion, $tipo);
     
         if ($idProducto) {
             return $this->view->response("Producto agregado con éxito con ID: $idProducto", 201);
@@ -72,14 +68,14 @@ class ProductosController{
     
         // Validar los datos
         if (empty($body['Nombre']) || empty($body['Marca']) || empty($body['Tipo']) || 
-            empty($body['Precio']) || empty($body['StockActual']) || empty($body['StockMinimo']) ||
-            empty($body['Descripcion']) || empty($body['FechaAlta'])) {
+            empty($body['Precio'])||
+            empty($body['Descripcion'])) {
             return $this->view->response('Faltan campos obligatorios', 400);
         }
     
         // Llamar al modelo para actualizar el producto
         $this->model->updateProductos($id_producto, $body['Nombre'], $body['Marca'], $body['Tipo'], $body['Precio'], 
-                                      $body['StockActual'], $body['StockMinimo'], $body['Descripcion'], $body['FechaAlta']);
+                                       $body['Descripcion']);
     
         // Obtener el producto actualizado
         $producto = $this->model->getProductosId($id_producto);

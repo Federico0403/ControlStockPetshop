@@ -149,6 +149,39 @@ function showProductos() {
     div.innerHTML += `<p class="mt-3 text-center"><small>Mostrando ${productos.length} Productos</small></p>`;
 }
 
+// Mostrar el formulario de modificación y cargar los datos del producto
+async function modificarProducto(idProducto) {
+    // Mostrar el formulario de modificación
+    document.getElementById("formularioModificar").style.display = "block";
+
+    try {
+        const response = await fetch(`${BASE_URL}productos/${idProducto}`);
+        if (!response.ok) {
+            throw new Error("Error al obtener el producto");
+        }
+
+        // Obtener los datos del producto
+        const producto = await response.json();
+
+        // Rellenar el formulario con los datos del producto
+        document.getElementById("idProductoModificar").value = producto.IDProducto;
+        document.getElementById("nombreProducto").value = producto.Nombre;
+        document.getElementById("marcaProducto").value = producto.Marca;
+        document.getElementById("tipoProducto").value = producto.Tipo;
+        document.getElementById("precioProducto").value = producto.Precio;
+        document.getElementById("descripcionProducto").value = producto.Descripcion;
+    } catch (error) {
+        console.error("Error al cargar los datos del producto:", error);
+    }
+}
+
+// Evento para cancelar la edición y ocultar el formulario
+document.getElementById("cancelarModificar").addEventListener("click", function() {
+    // Ocultar el formulario de modificación
+    document.getElementById("formularioModificar").style.display = "none";
+});
+
+
 // Función para enviar los datos modificados del formulario
 document.getElementById("formModificarProducto").addEventListener("submit", async function(event) {
     event.preventDefault();  // Evitar que el formulario se envíe de manera tradicional
@@ -158,10 +191,7 @@ document.getElementById("formModificarProducto").addEventListener("submit", asyn
     const marca = document.getElementById("marcaProducto").value;
     const tipo = document.getElementById("tipoProducto").value;
     const precio = document.getElementById("precioProducto").value;
-    const stockActual = document.getElementById("stockActualProducto").value;
-    const stockMinimo = document.getElementById("stockMinimoProducto").value;
     const descripcion = document.getElementById("descripcionProducto").value;
-    const fechaAlta = document.getElementById("fechaAltaProducto").value;
 
     // Enviar la solicitud de modificación al servidor
     try {
@@ -175,10 +205,7 @@ document.getElementById("formModificarProducto").addEventListener("submit", asyn
                 Marca: marca,
                 Tipo: tipo,
                 Precio: precio,
-                StockActual: stockActual,
-                StockMinimo: stockMinimo,
                 Descripcion: descripcion,
-                FechaAlta: fechaAlta
             })
         });
 
@@ -199,11 +226,8 @@ async function guardarModificaciones(idProducto) {
         Nombre: document.getElementById("nombreProducto").value,
         Marca: document.getElementById("marcaProducto").value,
         Precio: document.getElementById("precioProducto").value,
-        StockActual: document.getElementById("stockActualProducto").value,
-        StockMinimo: document.getElementById("stockMinimoProducto").value,
         Descripcion: document.getElementById("descripcionProducto").value,
         Tipo: document.getElementById("tipoProducto").value,
-        FechaAlta: document.getElementById("fechaAltaProducto").value
     };
 
     try {
