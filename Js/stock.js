@@ -44,6 +44,67 @@ async function getAllProveedores() {
     }
 }
 
+// Vínculo del formulario con el evento submit
+document.getElementById("formAgregarProducto").addEventListener("submit", async function(event) {
+    event.preventDefault(); // Prevenir el comportamiento por defecto (recarga de la página)
+
+    // Crear el objeto producto con los valores del formulario
+    const producto = {
+        Nombre: document.getElementById("nombreProducto").value,
+        Marca: document.getElementById("marcaProducto").value,
+        Tipo: document.getElementById("tipoProducto").value,
+        Precio: document.getElementById("precioProducto").value,
+        Descripcion: document.getElementById("descripcionProducto").value
+    };
+
+    // Enviar los datos al servidor para agregar el producto
+    try {
+        const response = await fetch(BASE_URL + "productos", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(producto)
+        });
+
+        if (!response.ok) {
+            throw new Error("Error al agregar el producto");
+        }
+
+        // Obtener la respuesta del servidor (producto agregado)
+        const nuevoProducto = await response.json();
+
+        // Agregar el nuevo producto al array de productos (si lo tienes)
+        productos.push(nuevoProducto);
+
+        // Mostrar los productos actualizados
+        showProductos();
+
+        // Ocultar el formulario después de agregar el producto
+        document.getElementById("formularioAgregarProducto").style.display = "none";
+
+        // Resetear el formulario
+        document.getElementById("formAgregarProducto").reset();
+    } catch (error) {
+        console.error("Error al agregar el producto:", error);
+    }
+});
+
+
+// Mostrar el formulario de agregar producto cuando se haga clic en "Agregar Productos"
+document.getElementById('agregarProductos').addEventListener('click', function() {
+    // Mostrar el formulario de agregar producto
+    document.getElementById('formularioAgregarProducto').style.display = 'block';
+});
+
+// Ocultar el formulario cuando se haga clic en "Cancelar"
+document.getElementById('cancelarAgregar').addEventListener('click', function() {
+    // Ocultar el formulario de agregar producto
+    document.getElementById('formularioAgregarProducto').style.display = 'none';
+});
+
+
+
 function showMarcas(marcasSeleccionadas = []) {
     let div = document.getElementById("filtrosMarca");
     div.innerHTML = "";
@@ -165,15 +226,16 @@ async function modificarProducto(idProducto) {
 
         // Rellenar el formulario con los datos del producto
         document.getElementById("idProductoModificar").value = producto.IDProducto;
-        document.getElementById("nombreProducto").value = producto.Nombre;
-        document.getElementById("marcaProducto").value = producto.Marca;
-        document.getElementById("tipoProducto").value = producto.Tipo;
-        document.getElementById("precioProducto").value = producto.Precio;
-        document.getElementById("descripcionProducto").value = producto.Descripcion;
+        document.getElementById("modificar_nombreProducto").value = producto.Nombre;
+        document.getElementById("modificar_marcaProducto").value = producto.Marca;
+        document.getElementById("modificar_tipoProducto").value = producto.Tipo;
+        document.getElementById("modificar_precioProducto").value = producto.Precio;
+        document.getElementById("modificar_descripcionProducto").value = producto.Descripcion;
     } catch (error) {
         console.error("Error al cargar los datos del producto:", error);
     }
 }
+
 
 // Evento para cancelar la edición y ocultar el formulario
 document.getElementById("cancelarModificar").addEventListener("click", function() {
@@ -187,11 +249,11 @@ document.getElementById("formModificarProducto").addEventListener("submit", asyn
     event.preventDefault();  // Evitar que el formulario se envíe de manera tradicional
 
     const idProducto = document.getElementById("idProductoModificar").value;
-    const nombre = document.getElementById("nombreProducto").value;
-    const marca = document.getElementById("marcaProducto").value;
-    const tipo = document.getElementById("tipoProducto").value;
-    const precio = document.getElementById("precioProducto").value;
-    const descripcion = document.getElementById("descripcionProducto").value;
+    const nombre = document.getElementById("modificar_nombreProducto").value;
+    const marca = document.getElementById("modificar_marcaProducto").value;
+    const tipo = document.getElementById("modificar_tipoProducto").value;
+    const precio = document.getElementById("modificar_precioProducto").value;
+    const descripcion = document.getElementById("modificar_descripcionProducto").value;
 
     // Enviar la solicitud de modificación al servidor
     try {
@@ -220,6 +282,7 @@ document.getElementById("formModificarProducto").addEventListener("submit", asyn
         console.error("Error al modificar el producto:", error);
     }
 });
+
 
 async function guardarModificaciones(idProducto) {
     const productoModificado = {
