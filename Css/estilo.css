@@ -1,4 +1,7 @@
-.container {
-    min-height: 84.6vh; /* El contenedor ocupará al menos el 80% de la altura */
-}
 
+
+body {
+    background-color: black;
+    color: white; /* Esto asegura que el texto sea visible sobre el fondo negro */
+  }
+  
