@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-12-2024 a las 18:30:02
+-- Tiempo de generación: 19-12-2024 a las 00:33:33
 -- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.0.30
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -41,9 +41,54 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`IDProducto`, `Nombre`, `Marca`, `Tipo`, `Precio`, `Descripcion`) VALUES
-(34, 'Producto 60', 'Marca T', 'comida', 1050, 'Descripción del Producto 60'),
-(35, 'pescaditos', 'gati', 'comida', 1500, 'proteina 35%'),
-(36, 'pescaditoss', 'gati', 'comida', 1500, 'proteina 50%');
+(37, 'Perro x kilo', 'Agility', 'Comida', 2600, 'x% De proteinas'),
+(38, 'Perro Bolsa', 'Agility', 'Comida', 4800, 'x% De proteinas'),
+(39, 'Urinary Gato', 'Agility', 'comida', 5400, '30% de Proteina'),
+(40, 'Urinary Gato', 'Agility', 'comida', 54000, '30% de Proteina'),
+(41, 'Kitten', 'Agility', 'comida', 5200, '34% de Proteina'),
+(42, 'Gato Por kilo', 'Agility', 'comida', 5100, '30% de Proteina'),
+(43, 'Gato Bolsa', 'Agility', 'Bolsa', 50000, '30% de Proteina'),
+(44, 'Holistic Food Bolsa', 'Greenline', 'comida', 44500, '32% de Proteina'),
+(45, 'Holistic Food Kilo', 'Greenline', 'comida', 3400, '32% de Proteina'),
+(46, 'Ocean Bolsa', 'Cat Chow', 'comida', 64000, 'x% De proteinas'),
+(47, 'Pescado Bolsa', 'Cat Chow', 'comida', 64000, 'x%'),
+(48, 'Gatitos Bolsa 15kg', 'Cat Chow', 'comida', 67000, '36% De proteinas'),
+(49, 'Gatitos 8kg', 'Cat Chow', 'comida', 31000, 'x%'),
+(50, 'Gatitos por kilo', 'Cat Chow', 'comida', 4800, 'x% De proteinas'),
+(51, 'Ocean', 'Cat Chow', 'comida', 4800, 'x% De proteinas'),
+(52, 'Cordero medium bolsa 15kg', 'Old prince', 'comida', 67000, 'x% De proteinas'),
+(53, 'Cordero medium kilo', 'Old prince', 'comida', 4600, 'x% De proteinas'),
+(54, 'Small 15kg', 'Old prince', 'comida', 67000, 'x% De proteinas'),
+(55, 'Small 1kg', 'Old prince', 'comida', 4600, 'x% De proteinas'),
+(56, 'Gato Equilibrium Complete', 'Old prince', 'comida', 5200, 'x% De proteinas'),
+(57, 'Gato Bolsa', 'Old prince', 'comida', 36000, 'x% De proteinas'),
+(58, 'Adulto Bolsa 20kg', 'Performance', 'comida', 68000, 'x% De proteinas'),
+(59, 'Adulto por kilo', 'Performance', 'comida', 4400, 'x% De proteinas'),
+(60, 'Gato Bolsa 7,5 kg ', 'Performance', 'comida', 37000, 'x% De proteinas'),
+(61, 'Gato Por kilo', 'Performance', 'comida', 6800, 'x% De proteinas'),
+(62, 'Perro Bolsa 20kg', 'Valiant', 'comida', 22600, 'x% De proteinas'),
+(63, 'Perro por kilo', 'Valiant', 'comida', 1200, 'x% De proteinas'),
+(64, 'Premiun Gato 24kg', 'Vital Safety', 'comida', 70000, 'x% De proteinas'),
+(65, 'Premiun Gato por kg', 'Vital Safety', 'comida', 4200, 'x% De proteinas'),
+(66, 'Premiun Gato kilo', 'Vital Safety', 'comida', 4200, 'x% De proteinas'),
+(67, 'Premiun Perro kilo', 'Vital Safety', 'comida', 2800, 'x% De proteinas'),
+(68, 'Cachorros Bolsa 15kg', 'Nutribon', 'comida', 24000, 'x% De proteinas'),
+(69, 'Cachorros por kg', 'Nutribon', 'comida', 1700, 'x% De proteinas'),
+(70, 'Adulto Bolsa 15kg', 'Nutribon', 'comida', 18800, 'x% De proteinas'),
+(71, 'Adulto por kg', 'Nutribon', 'comida', 1400, 'x% De proteinas'),
+(72, 'Raza pequeña por kg', 'Nutribon', 'comida', 1700, 'x% De proteinas'),
+(73, 'Gato bolsa 20kg', 'Nutribon', 'comida', 37000, 'x% De proteinas'),
+(74, 'Gato por kg', 'Nutribon', 'comida', 1900, 'x% De proteinas'),
+(75, 'Criadores bolsa 20kg', 'Sieger', 'comida', 62000, 'x% De proteinas'),
+(76, 'Criadores por kg', 'Sieger', 'comida', 3600, 'x% De proteinas'),
+(77, 'Gato bolsa 20kg', 'Vagoneta', 'comida', 31000, 'x% De proteinas'),
+(78, 'Gato por kg', 'Vagoneta', 'comida', 1900, 'x% De proteinas'),
+(79, 'Criadores bolsa 20kg', 'Estampa', 'comida', 28500, 'x% De proteinas'),
+(80, 'Criadores por kg', 'Estampa', 'comida', 1900, 'x% De proteinas'),
+(81, 'Plus perro bolsa 20kg', 'Estampa', 'comida', 33400, 'x% De proteinas'),
+(82, 'Plus perro por kg', 'Estampa', 'comida', 2300, 'x% De proteinas'),
+(83, 'Plus raza pequeña bolsa 8kg', 'Estampa', 'comida', 19000, 'x% De proteinas'),
+(84, 'Plus raza pequeña bolsa 15kg', 'Estampa', 'comida', 25500, 'x% De proteinas');
 
 -- --------------------------------------------------------
 
@@ -98,7 +143,7 @@ ALTER TABLE `proveedor`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `IDProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `IDProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- AUTO_INCREMENT de la tabla `proveedor`
