@@ -5,10 +5,8 @@ const BASE_URL = `${window.location.origin}${BASE_PATH}/ControlStockPetshop/api/
 
 let btnProductos = document.getElementById("productos").addEventListener("click", getAllProductos);
 let btnProveedores = document.getElementById("proveedores").addEventListener("click", getAllProveedores);
-let btnMovimientos = document.getElementById("movimientos").addEventListener("click", getAllMovimientos);
 let productos = [];
 let proveedores = [];
-let movimientos = [];
 
 async function getAllProductos(marcas = []) {
     try {
@@ -33,8 +31,6 @@ async function getAllProductos(marcas = []) {
     }
 }
 
-
-
 async function getAllProveedores() {
     try {
         const response = await fetch(BASE_URL + "proveedores");
@@ -43,19 +39,6 @@ async function getAllProveedores() {
         }
         proveedores = await response.json();
         showProveedores();
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-async function getAllMovimientos() {
-    try {
-        const response = await fetch(BASE_URL + "movimientos");
-        if (!response.ok) {
-            throw new Error("Error al obtener los movimientos");
-        }
-        movimientos = await response.json();
-        showMovimientos();
     } catch (error) {
         console.log(error);
     }
@@ -99,7 +82,6 @@ function showMarcas(marcasSeleccionadas = []) {
     });
 }
 
-
 function filterProductosByMarca() {
     // Obtener todas las marcas seleccionadas
     let marcasSeleccionadas = [];
@@ -112,7 +94,7 @@ function filterProductosByMarca() {
 }
 
 async function eliminarProducto(idProducto) {
-    if (confirm){
+    if (confirm) {
         try {
             const response = await fetch(`${BASE_URL}productos/${idProducto}`, {
                 method: "DELETE"
@@ -139,9 +121,9 @@ function showProductos() {
     let encabezados = `
         <div class="row mb-3 text-center">
             <div class="col-md-3"><strong>Marca</strong></div>
-            <div class="col-md-2"><strong>Stock</strong></div>
-            <div class="col-md-2"><strong>Precio</strong></div>
-            <div class="col-md-3"><strong>Tipo</strong></div>
+            <div class="col-md-2"><strong>Nombre</strong></div>
+            <div class="col-md-2"><strong>Precio</strong></div> 
+            <div class="col-md-3"><strong>Descripcion</strong></div>
             <div class="col-md-2"><strong>Acciones</strong></div>  <!-- Nueva columna para los botones -->
         </div>
     `;
@@ -152,9 +134,9 @@ function showProductos() {
         let html = `
         <div class="row mb-3 text-center">
             <div class="col-md-3">${producto.Marca || 'Marca no disponible'}</div>
-            <div class="col-md-2">${producto.StockActual || 'Stock no disponible'}</div>
+            <div class="col-md-2">${producto.Nombre || 'Stock no disponible'}</div>
             <div class="col-md-2">${producto.Precio ? `$${producto.Precio}` : 'Precio no disponible'}</div>
-            <div class="col-md-3">${producto.Tipo || 'Tipo no disponible'}</div>
+            <div class="col-md-3">${producto.Descripcion || 'Tipo no disponible'}</div>
             <div class="col-md-2">
                 <button class="btn btn-warning btn-sm" onclick="modificarProducto(${producto.IDProducto})">Modificar</button>
                 <button class="btn btn-danger btn-sm" onclick="eliminarProducto(${producto.IDProducto})">Eliminar</button>
@@ -166,42 +148,6 @@ function showProductos() {
 
     div.innerHTML += `<p class="mt-3 text-center"><small>Mostrando ${productos.length} Productos</small></p>`;
 }
-
-
-// Mostrar el formulario de modificación y cargar los datos del producto
-async function modificarProducto(idProducto) {
-    // Mostrar el formulario de modificación
-    document.getElementById("formularioModificar").style.display = "block";
-
-    try {
-        const response = await fetch(`${BASE_URL}productos/${idProducto}`);
-        if (!response.ok) {
-            throw new Error("Error al obtener el producto");
-        }
-
-        // Obtener los datos del producto
-        const producto = await response.json();
-
-        // Rellenar el formulario con los datos del producto
-        document.getElementById("idProductoModificar").value = producto.IDProducto;
-        document.getElementById("nombreProducto").value = producto.Nombre;
-        document.getElementById("marcaProducto").value = producto.Marca;
-        document.getElementById("tipoProducto").value = producto.Tipo;
-        document.getElementById("precioProducto").value = producto.Precio;
-        document.getElementById("stockActualProducto").value = producto.StockActual;
-        document.getElementById("stockMinimoProducto").value = producto.StockMinimo;
-        document.getElementById("descripcionProducto").value = producto.Descripcion;
-        document.getElementById("fechaAltaProducto").value = producto.FechaAlta;
-    } catch (error) {
-        console.error("Error al cargar los datos del producto:", error);
-    }
-}
-
-// Evento para cancelar la edición y ocultar el formulario
-document.getElementById("cancelarModificar").addEventListener("click", function() {
-    // Ocultar el formulario de modificación
-    document.getElementById("formularioModificar").style.display = "none";
-});
 
 // Función para enviar los datos modificados del formulario
 document.getElementById("formModificarProducto").addEventListener("submit", async function(event) {
@@ -247,7 +193,6 @@ document.getElementById("formModificarProducto").addEventListener("submit", asyn
         console.error("Error al modificar el producto:", error);
     }
 });
-
 
 async function guardarModificaciones(idProducto) {
     const productoModificado = {
@@ -315,26 +260,4 @@ function showProveedores() {
     div.innerHTML += `<p class="mt-3 text-center"><small>Mostrando ${proveedores.length} Proveedores</small></p>`;
 }
 
-function showMovimientos() {
-    let div = document.getElementById("contenedorMostrar");
-    div.innerHTML = "";
-    movimientos.forEach(movimiento => {
-        let html = ` 
-        <div class="col-md-4 mb-4">
-            <div class='card'>
-                <div class='card-body'>
-                    <h5 class='card-title'>
-                        <a href='#' data-id='${movimiento.id_producto}' class='text-decoration-none titulo text-danger btnDetail'>${movimiento.nombre_producto}</a>
-                    </h5>
-                    <p class='card-text'>Fecha: ${movimiento.fecha}</p>
-                    <p class='card-text'>Cantidad: ${movimiento.cantidad}</p>
-                    <p class='card-text'>Tipo: ${movimiento.tipo}</p>
-                </div>
-            </div>
-        </div>`;
-        div.innerHTML += html;
-    });
-    div.innerHTML += `<p class="mt-3 text-center"><small>Mostrando ${movimientos.length} Movimientos</small></p>`;
-}
-
-getAllProductos(); 
+getAllProductos();

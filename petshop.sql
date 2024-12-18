@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-11-2024 a las 00:01:32
+-- Tiempo de generación: 18-12-2024 a las 18:30:02
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -24,20 +24,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `movimientostock`
---
-
-CREATE TABLE `movimientostock` (
-  `IDMovimiento` int(11) NOT NULL,
-  `IDProducto` int(11) NOT NULL,
-  `TipoMovimiento` varchar(250) NOT NULL,
-  `Cantidad` int(11) NOT NULL,
-  `FechaMovimiento` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `productos`
 --
 
@@ -47,11 +33,17 @@ CREATE TABLE `productos` (
   `Marca` varchar(250) NOT NULL,
   `Tipo` varchar(250) NOT NULL,
   `Precio` int(11) NOT NULL,
-  `StockActual` int(11) NOT NULL,
-  `StockMinimo` int(11) NOT NULL,
-  `Descripcion` varchar(500) NOT NULL,
-  `FechaAlta` date NOT NULL
+  `Descripcion` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `productos`
+--
+
+INSERT INTO `productos` (`IDProducto`, `Nombre`, `Marca`, `Tipo`, `Precio`, `Descripcion`) VALUES
+(34, 'Producto 60', 'Marca T', 'comida', 1050, 'Descripción del Producto 60'),
+(35, 'pescaditos', 'gati', 'comida', 1500, 'proteina 35%'),
+(36, 'pescaditoss', 'gati', 'comida', 1500, 'proteina 50%');
 
 -- --------------------------------------------------------
 
@@ -67,15 +59,24 @@ CREATE TABLE `proveedor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Índices para tablas volcadas
+-- Volcado de datos para la tabla `proveedor`
 --
 
+INSERT INTO `proveedor` (`IDProveedor`, `NombreProveedor`, `Contacto`, `Direccion`) VALUES
+(1, 'Proveedor 1', 'Contacto 1', 'Direccion 1'),
+(2, 'Proveedor 2', 'Contacto 2', 'Direccion 2'),
+(4, 'Proveedor 4', 'Contacto 4', 'Direccion 4'),
+(5, 'Proveedor 5', 'Contacto 5', 'Direccion 5'),
+(6, 'Proveedor 6', 'Contacto 6', 'Direccion 6'),
+(7, 'Proveedor 7', 'Contacto 7', 'Direccion 7'),
+(8, 'Proveedor 8', 'Contacto 8', 'Direccion 8'),
+(9, 'Proveedor 9', 'Contacto 9', 'Direccion 9'),
+(10, 'Proveedor 10', 'Contacto 10', 'Direccion 10'),
+(11, 'Proveedor 1saaaaaasdasdasdsadsadasdsaaaa', 'Contacto 1', 'Direccion 1');
+
 --
--- Indices de la tabla `movimientostock`
+-- Índices para tablas volcadas
 --
-ALTER TABLE `movimientostock`
-  ADD PRIMARY KEY (`IDMovimiento`),
-  ADD KEY `fk_IDProducto` (`IDProducto`);
 
 --
 -- Indices de la tabla `productos`
@@ -94,32 +95,16 @@ ALTER TABLE `proveedor`
 --
 
 --
--- AUTO_INCREMENT de la tabla `movimientostock`
---
-ALTER TABLE `movimientostock`
-  MODIFY `IDMovimiento` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `IDProducto` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IDProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
-  MODIFY `IDProveedor` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `movimientostock`
---
-ALTER TABLE `movimientostock`
-  ADD CONSTRAINT `fk_IDProducto` FOREIGN KEY (`IDProducto`) REFERENCES `productos` (`IDProducto`) ON DELETE CASCADE ON UPDATE CASCADE;
+  MODIFY `IDProveedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
