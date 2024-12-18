@@ -36,17 +36,17 @@ class ProductosModel {
     }
 
     public function insertProducto($nombre, $marca, $precio, $descripcion, $tipo) {
-        // Inserta el producto en la base de datos
-        $query = $this->db->prepare(
-            'INSERT INTO productos (Nombre, Marca, Precio, Descripcion, Tipo) 
-            VALUES (?, ?, ?, ?, ?)'  // El número de ? debe coincidir con el número de columnas
-        );
-        $query->execute([$nombre, $marca, $precio, $descripcion, $tipo]);
-    
-        // Retorna el ID del producto insertado
-        return $this->db->lastInsertId();
-    }
-    
+    // Inserta el producto en la base de datos
+    $query = $this->db->prepare(
+        'INSERT INTO productos (Nombre, Marca, Precio, Descripcion, Tipo) 
+        VALUES (?, ?, ?, ?, ?)'  // El número de ? debe coincidir con el número de columnas
+    );
+    $query->execute([$nombre, $marca, $precio, $descripcion, $tipo]);
+
+    // Retorna el ID del producto insertado
+    return $this->db->lastInsertId();
+}
+
     
     public function updateProductos($id_producto, $nombre_producto, $marca, $tipo, $precio, $descripcion) {
         // Preparar la consulta para actualizar el producto
