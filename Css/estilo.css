@@ -275,7 +275,17 @@ input[type="checkbox"] {
 }
 
 
-
+.navbar-brand span {
+    color: pink; /* Cambia a rosa */
+    font-family: 'Pacifico', cursive;
+    font-size: 0.8vw;
+}
+.navbar-brand{
+    color: white;
+    user-select: none;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.5vw;
+}
 
 
 
