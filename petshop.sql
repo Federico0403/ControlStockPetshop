@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-12-2024 a las 00:33:33
+-- Tiempo de generación: 19-12-2024 a las 15:50:44
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -88,7 +88,52 @@ INSERT INTO `productos` (`IDProducto`, `Nombre`, `Marca`, `Tipo`, `Precio`, `Des
 (81, 'Plus perro bolsa 20kg', 'Estampa', 'comida', 33400, 'x% De proteinas'),
 (82, 'Plus perro por kg', 'Estampa', 'comida', 2300, 'x% De proteinas'),
 (83, 'Plus raza pequeña bolsa 8kg', 'Estampa', 'comida', 19000, 'x% De proteinas'),
-(84, 'Plus raza pequeña bolsa 15kg', 'Estampa', 'comida', 25500, 'x% De proteinas');
+(84, 'Plus raza pequeña bolsa 15kg', 'Estampa', 'comida', 25500, 'x% De proteinas'),
+(87, 'ss', 'Greenline', 'Higieness', 2313, '32443'),
+(88, 'Raza Pequeña', 'Estampa', 'comida', 2300, 'x% De proteinas'),
+(89, 'Gato bolsa 15kg', 'Estampa', 'comida', 31000, 'x% De proteinas'),
+(90, 'Gato Por kg', 'Estampa', 'comida', 2600, 'x% De proteinas'),
+(91, 'Cachorro Bolsa 15kg', 'Estampa', 'comida', 30500, 'x% De proteinas'),
+(92, 'Cachorros Por kg', 'Estampa', 'comida', 2500, 'x% De proteinas'),
+(93, 'Gato urinary Bolsa', 'XQ', 'comida', 26500, 'x% De proteinas'),
+(94, 'Gato Por kg', 'XQ', 'comida', 3400, 'x% De proteinas'),
+(95, 'Adult Light Bolsa 15kg', 'Eukanuba', 'comida', 67000, 'x% De proteinas'),
+(96, 'Adult Light Por kg', 'Eukanuba', 'comida', 4900, 'x% De proteinas'),
+(97, 'Cachorro Small Bolsa 15kg', 'Eukanuba', 'comida', 66000, 'x% De proteinas'),
+(98, 'Cachorro Small Por kg', 'Eukanuba', 'comida', 4800, 'x% De proteinas'),
+(99, 'Gato Por Bolsa 15kg', 'Excellent', 'comida', 94000, 'x% De proteinas'),
+(100, 'Gato Por kg', 'Excellent', 'comida', 6800, 'x% De proteinas'),
+(101, 'Gato Kitten Bolsa 7.5kg', 'Excellent', 'comida', 54000, 'x% De proteinas'),
+(102, 'Gato Kitten Por Kg', 'Excellent', 'comida', 7600, 'x% De proteinas'),
+(103, 'Perro Por Bolsa 15kg', 'Excellent', 'comida', 55000, 'x% De proteinas'),
+(104, 'Perro por kg', 'Excellent', 'comida', 4200, 'x% De proteinas'),
+(105, 'Perro Adulto Small Por Bolsa 15kg', 'Excellent', 'comida', 50500, 'x% De proteinas'),
+(106, 'Perro Adulto Small Por kg', 'Excellent', 'comida', 4200, 'x% De proteinas'),
+(107, 'Urinary Gato Por kg', 'Excellent', 'comida', 7600, 'x% De proteinas'),
+(108, 'Urinary Gato Por Bolsa 7.5', 'Excellent', 'comida', 52500, 'x% De proteinas'),
+(109, 'Mini Adulto Por kg', 'Royal canin', 'comida', 55500, 'x% De proteinas'),
+(110, 'Mini Adulto Por kg', 'Royal canin', 'comida', 7400, 'x% De proteinas'),
+(111, 'Mini Puppy Por Bolsa 15kg', 'Royal canin', 'comida', 79500, 'x% De proteinas'),
+(112, 'Mini Puppy Por kg', 'Royal canin', 'comida', 6400, 'x% De proteinas'),
+(113, 'Pescado y Salmon Bolsa 15kg', 'Gati', 'comida', 39500, 'x% De proteinas'),
+(114, 'Pescado y Salmon Por kg', 'Gati', 'comida', 3000, 'x% De proteinas'),
+(115, 'Pescado Por Bolsa 15kg', 'Sabrositos', 'comida', 46000, 'x% De proteinas'),
+(116, 'Mix Carne Por Bolsa 15kg', 'Sabrositos', 'comida', 46000, 'x% De proteinas'),
+(117, 'Pescado Por kg', 'Sabrositos', 'comida', 2400, 'x% De proteinas'),
+(118, 'Mix Carne Por kg', 'Sabrositos', 'comida', 2400, 'x% De proteinas'),
+(119, 'Bebe Por Bolsa', 'Whiskas', 'comida', 39500, 'x% De proteinas'),
+(120, 'Bebe Por kg', 'Whiskas', 'comida', 4000, 'x% De proteinas'),
+(121, 'Pollo Por Bolsa 10kg ', 'Whiskas', 'comida', 41000, 'x% De proteinas'),
+(122, 'Pescado Por Bolsa 10kg', 'Whiskas', 'comida', 41000, 'x% De proteinas'),
+(123, 'Pollo Por kg', 'Whiskas', 'comida', 4200, 'x% De proteinas'),
+(124, 'Pescado Por kg', 'Whiskas', 'comida', 4200, 'x% De proteinas'),
+(125, 'Hepatic Perro 10kg', 'Royal canin', 'comida', 70000, 'x% De proteinas'),
+(126, 'Hepatic Perro Por Bolsa', 'Royal canin', 'comida', 7100, 'x% De proteinas'),
+(127, 'Diabetic Por Bolsa 10kg', 'Royal canin', 'comida', 73000, 'x% De proteinas'),
+(128, 'Diabetic Por kg', 'Royal canin', 'comida', 7400, 'x% De proteinas'),
+(129, 'Satiety Perro Por Bolsa 15kg', 'Royal canin', 'comida', 83000, 'x% De proteinas'),
+(130, 'Satiety Perro Por kg', 'Royal canin', 'comida', 5600, 'x% De proteinas'),
+(131, 'Max Adult Por Bolsa 15kg', 'Royal canin', 'comida', 71000, 'x% De proteinas');
 
 -- --------------------------------------------------------
 
@@ -143,7 +188,7 @@ ALTER TABLE `proveedor`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `IDProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `IDProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
 
 --
 -- AUTO_INCREMENT de la tabla `proveedor`
