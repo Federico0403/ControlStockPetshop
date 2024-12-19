@@ -118,17 +118,14 @@ function showMarcas(marcasSeleccionadas = []) {
     });
 
     // Crear una fila para las marcas
-    let marcasHTML = `<div class="row">`;
-
+    let marcasHTML = `<div class="row contenedor-filtro"> <h1>Filtros</h1>`;
+    
     marcasUnicas.forEach(marca => {
         marcasHTML += `
-        <div class="col-md-3 mb-3"> <!-- Cada marca en una columna con espacio -->
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="${marca}" id="marca-${marca}"
-                ${marcasSeleccionadas.includes(marca) ? "checked" : ""}>  <!-- Mantener seleccionadas las marcas filtradas -->
-                <label class="form-check-label" for="marca-${marca}">
-                    ${marca}
-                </label>
+        <div class="col-md-3 mb-3 contenedor-marcas">
+            <div class="marca" id="marca-${marca}" data-marca="${marca}">
+                <input type="checkbox" class="form-check-input" value="${marca}" id="checkbox-${marca}" ${marcasSeleccionadas.includes(marca) ? "checked" : ""} style="display: none;">
+                <span class="marca-nombre">${marca}</span>
             </div>
         </div>`;
     });
@@ -137,11 +134,18 @@ function showMarcas(marcasSeleccionadas = []) {
 
     div.innerHTML = marcasHTML;
 
-    // Añadir evento a los checkboxes para filtrar productos por marca
-    document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-        checkbox.addEventListener('change', filterProductosByMarca);
+    // Añadir evento para alternar el estado del checkbox al hacer clic
+    document.querySelectorAll('.marca').forEach(element => {
+        element.addEventListener('click', () => {
+            const checkbox = element.querySelector('input[type="checkbox"]');
+            checkbox.checked = !checkbox.checked;  // Alternar el estado del checkbox
+            element.classList.toggle('seleccionada', checkbox.checked);  // Cambiar el estilo de la marca
+            // Llamar a la función de filtro (si la necesitas)
+            filterProductosByMarca();
+        });
     });
 }
+
 
 function filterProductosByMarca() {
     // Obtener todas las marcas seleccionadas
@@ -193,11 +197,11 @@ function showProductos() {
     // Recorrer productos y crear filas con botones de eliminar y modificar
     productos.forEach(producto => {
         let html = `
-        <div class="row mb-3 text-center">
-            <div class="col-md-3">${producto.Marca || 'Marca no disponible'}</div>
-            <div class="col-md-2">${producto.Nombre || 'Stock no disponible'}</div>
-            <div class="col-md-2">${producto.Precio ? `$${producto.Precio}` : 'Precio no disponible'}</div>
-            <div class="col-md-3">${producto.Descripcion || 'Tipo no disponible'}</div>
+        <div class="row mb-3 text-center contenedor-productos">
+            <div class="col-md-3 productos">${producto.Marca || 'Marca no disponible'}</div>
+            <div class="col-md-2 productos">${producto.Nombre || 'Stock no disponible'}</div>
+            <div class="col-md-2 productos">${producto.Precio ? `$${producto.Precio}` : 'Precio no disponible'}</div>
+            <div class="col-md-3 productos">${producto.Descripcion || 'Tipo no disponible'}</div>
             <div class="col-md-2">
                 <button class="btn btn-warning btn-sm" onclick="modificarProducto(${producto.IDProducto})">Modificar</button>
                 <button class="btn btn-danger btn-sm" onclick="eliminarProducto(${producto.IDProducto})">Eliminar</button>

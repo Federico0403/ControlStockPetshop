@@ -1,6 +1,178 @@
+
+
 body {
-    background-color: rgb(255, 255, 255);
+    background-image: url('../Img/Fond.jpg');
+    background-size: cover; /* Para que la imagen cubra toda la pantalla */
+    background-attachment: fixed; /* Mantiene la imagen fija mientras el contenido se desplaza */
+    background-position: center; /* Centra la imagen */
+    font-family: sans-serif;
+}
+
+#contenedorMostrar{
+    position: relative;
+}
+
+.table-responsive{
+    overflow-x: hidden;
+}
+
+.contenedor {
+    width: 40vw;
+    background-color: white;
+    padding-top: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 150px rgba(0, 0, 0, 1);;
+}
+
+/* Contenedor que mantiene las marcas */
+/* Contenedor de las marcas (lado izquierdo de la pantalla) */
+.contenedor-filtro {
+            /* Centra los elementos horizontalmente */
+    position: fixed;            /* Fija el contenedor a la izquierda de la página */
+    top: 5vw;                   /* Empuja el contenedor hacia el principio de la ventana */
+    left: 2vw;                  /* Fija el contenedor al borde izquierdo */
+    width: 30vh;                /* Tamaño ajustable, por ejemplo, 300px */
+    height: 60em;              /* Ocupa toda la altura de la ventana */
+    overflow-y: auto;           /* Permite desplazamiento vertical si hay muchas marcas */
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 0 10px 10px 0; /* Bordes redondeados solo a la derecha */
+    display: flex;
+    flex-direction: column;     /* Alinea las marcas en una columna */
+    gap: 10px;                  /* Espacio entre las marcas */
+}
+
+.contenedor-marcas .marca {
+    background-color: #007404;  /* Fondo verde */
+    color: white;               /* Texto blanco */
+    font-size: 1em;             /* Tamaño de fuente */
+    text-align: center;         /* Alineación del texto */
+    border-radius: 5px;         /* Bordes redondeados */
+    padding: 10px 20px;         /* Relleno dentro del contenedor */
+    cursor: pointer;
+    user-select: none;          /* Impide seleccionar el texto */
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.7); /* Sombra */
+    width: auto;                /* Ajuste del ancho */
+    min-width: 7vw;           /* Ancho mínimo */
+    max-width: 200px;           /* Ancho máximo */
+    white-space: nowrap;        /* Evita que el texto se divida en varias líneas */
+    overflow: hidden;           /* Oculta el desbordamiento */
+    text-overflow: ellipsis;    /* Muestra "..." si el texto es demasiado largo */
+}
+
+.contenedor-marcas .marca:hover {
+    background-color: #004d00;  /* Fondo verde más oscuro cuando se pasa el ratón */
 }
 
 
-  
+/* Al pasar el ratón sobre una marca */
+.contenedor-marcas .marca:hover {
+    background-color: #004d00;  /* Cambia el fondo al pasar el ratón */
+}
+
+/* Ocultar checkbox pero mantener su funcionalidad */
+input[type="checkbox"] {
+    display: none;
+}
+
+/* Estilo cuando una marca es seleccionada */
+.contenedor-marcas .marca.seleccionada {
+    background-color: white;  /* Fondo blanco cuando se selecciona */
+    color: black;             /* Texto negro cuando se selecciona */
+}
+
+/* Contenedor principal que no choque con las marcas */
+.contenedor-principal {
+    margin-left: 320px; /* Deja un espacio a la izquierda para el contenedor de marcas */
+    padding: 20px;      /* Agrega un poco de padding para separación */
+}
+
+
+/* Estilo para las filas de productos */
+.contenedor-productos {
+    display: flex;
+    align-items: center;    /* Centra verticalmente el contenido dentro de la fila */
+    justify-content: space-between; /* Espacia las columnas uniformemente */
+    padding: 10px 0;        /* Espaciado arriba y abajo */
+    border-bottom: 1px solid #ddd; /* Línea separadora debajo de cada producto */
+    font-size: 1em;       /* Ajusta el tamaño de fuente */
+    background-color: #bad4b2; /* Fondo ligeramente gris para los productos */
+    transition: background-color 0.3s ease; /* Efecto al pasar el ratón */
+}
+
+/* Hover sobre la fila del producto */
+.contenedor-productos:hover {
+    background-color: #f1f1f1; /* Cambia el color de fondo al pasar el ratón */
+}
+
+/* Estilo de las columnas de productos */
+.productos {
+    user-select: none; 
+    padding: 5px;          /* Espaciado interno en cada columna */
+    text-align: center;    /* Centra el texto en cada celda */
+    overflow: visible;     /* Oculta contenido desbordado */ /* Evita que el texto salte a otra línea */
+}
+
+/* Botones en la última columna */
+.contenedor-productos .btn {
+    margin: 0 5px;         /* Espaciado entre botones */
+}
+
+/* Estilo base para los formularios */
+.formularioAgregar {
+    position: fixed;          /* Fija el formulario en un lugar específico */
+    top: 10%;                 /* Margen desde la parte superior */
+    right: -400px;            /* Inicialmente fuera de la pantalla */
+    width: 350px;             /* Ancho fijo del formulario */
+    background-color: #fff;   /* Fondo blanco */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para resaltar */
+    border-radius: 8px;       /* Bordes redondeados */
+    padding: 20px;            /* Espaciado interno */
+    box-sizing: border-box;   /* Incluye padding en el tamaño total */
+    z-index: 1000;            /* Asegura que esté sobre otros elementos */
+    transition: right 0.3s ease; /* Animación suave para mostrar/ocultar */
+}
+
+/* Cuando el formulario está visible */
+#formularioAgregarProducto[style*="display: block;"],
+#formularioModificar[style*="display: block;"] {
+    right: 10px;             /* Mueve el formulario hacia la pantalla */
+}
+
+/* Botones dentro de los formularios */
+.formularioAgregar .btn {
+    margin-top: 10px;        /* Espaciado entre botones */
+}
+
+
+/* Estilo base para el formulario de Modificar */
+.formularioModificarr {
+    position: fixed;          /* Fija el formulario en un lugar específico */
+    top: 10%;                 /* Margen desde la parte superior */
+    right: -400px;            /* Inicialmente fuera de la pantalla */
+    width: 350px;             /* Ancho fijo del formulario */
+    background-color: #fff;   /* Fondo blanco */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para resaltar */
+    border-radius: 8px;       /* Bordes redondeados */
+    padding: 20px;            /* Espaciado interno */
+    box-sizing: border-box;   /* Incluye padding en el tamaño total */
+    z-index: 1000;            /* Asegura que esté sobre otros elementos */
+    transition: right 0.3s ease; /* Animación suave para mostrar/ocultar */
+}
+
+/* Cuando el formulario está visible */
+#formularioModificar[style*="display: block;"] {
+    right: 10px;             /* Mueve el formulario hacia la pantalla */
+}
+
+/* Botones dentro del formulario de Modificar */
+.formularioModificarr .btn {
+    margin-top: 10px;        /* Espaciado entre botones */
+}
+
+
+
+
+
+
+
