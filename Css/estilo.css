@@ -170,6 +170,15 @@ input[type="checkbox"] {
     margin-top: 10px;        /* Espaciado entre botones */
 }
 
+.marca.seleccionada {
+    background-color: #3f8032; /* Color claro para destacar */
+    border: 2px solid #007404; /* Opcional: borde para resaltar */
+    border-radius: 5px;
+    padding: 5px;
+    transition: all 0.3s ease; /* Transición suave */
+}
+
+
 
 
 

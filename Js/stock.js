@@ -7,6 +7,8 @@ let btnProductos = document.getElementById("productos").addEventListener("click"
 let btnProveedores = document.getElementById("proveedores").addEventListener("click", getAllProveedores);
 let productos = [];
 let proveedores = [];
+let todasLasMarcas = new Set(); // Almacenará todas las marcas disponibles.
+
 
 async function getAllProductos(marcas = []) {
     try {
@@ -24,12 +26,24 @@ async function getAllProductos(marcas = []) {
             throw new Error("Error al obtener los productos");
         }
         productos = await response.json();
+
+        // Actualizar el conjunto de todas las marcas (solo al cargar todos los productos)
+        if (marcas.length === 0) {
+            productos.forEach(producto => {
+                if (producto.Marca) {
+                    todasLasMarcas.add(producto.Marca);
+                }
+            });
+        }
+
+        // Mostrar marcas y productos
         showMarcas(marcasSeleccionadas); // Pasar las marcas seleccionadas al actualizar la vista
         showProductos();
     } catch (error) {
         console.log(error);
     }
 }
+
 
 async function getAllProveedores() {
     try {
@@ -80,15 +94,14 @@ document.getElementById("formAgregarProducto").addEventListener("submit", async 
         // Mostrar los productos actualizados
         showProductos();
 
-        // Ocultar el formulario después de agregar el producto
-        document.getElementById("formularioAgregarProducto").style.display = "none";
-
-        // Resetear el formulario
+        // Resetear el formulario después de agregar el producto
         document.getElementById("formAgregarProducto").reset();
+
     } catch (error) {
         console.error("Error al agregar el producto:", error);
     }
 });
+
 
 
 // Mostrar el formulario de agregar producto cuando se haga clic en "Agregar Productos"
@@ -109,42 +122,35 @@ function showMarcas(marcasSeleccionadas = []) {
     let div = document.getElementById("filtrosMarca");
     div.innerHTML = "";
 
-    let marcasUnicas = new Set();
-
-    productos.forEach(producto => {
-        if (producto.Marca) {
-            marcasUnicas.add(producto.Marca);
-        }
-    });
-
-    // Crear una fila para las marcas
+    // Crear la fila de marcas
     let marcasHTML = `<div class="row contenedor-filtro"> <h1>Filtros</h1>`;
     
-    marcasUnicas.forEach(marca => {
+    todasLasMarcas.forEach(marca => {
+        const isSelected = marcasSeleccionadas.includes(marca); // Verificar si está seleccionada
         marcasHTML += `
         <div class="col-md-3 mb-3 contenedor-marcas">
-            <div class="marca" id="marca-${marca}" data-marca="${marca}">
-                <input type="checkbox" class="form-check-input" value="${marca}" id="checkbox-${marca}" ${marcasSeleccionadas.includes(marca) ? "checked" : ""} style="display: none;">
+            <div class="marca ${isSelected ? 'seleccionada' : ''}" id="marca-${marca}" data-marca="${marca}">
+                <input type="checkbox" class="form-check-input" value="${marca}" id="checkbox-${marca}" ${isSelected ? "checked" : ""} style="display: none;">
                 <span class="marca-nombre">${marca}</span>
             </div>
         </div>`;
     });
 
-    marcasHTML += `</div>`;  // Cerrar la fila
+    marcasHTML += `</div>`; // Cerrar la fila
 
     div.innerHTML = marcasHTML;
 
-    // Añadir evento para alternar el estado del checkbox al hacer clic
+    // Agregar eventos para alternar el estado del checkbox y la clase
     document.querySelectorAll('.marca').forEach(element => {
         element.addEventListener('click', () => {
             const checkbox = element.querySelector('input[type="checkbox"]');
-            checkbox.checked = !checkbox.checked;  // Alternar el estado del checkbox
-            element.classList.toggle('seleccionada', checkbox.checked);  // Cambiar el estilo de la marca
-            // Llamar a la función de filtro (si la necesitas)
-            filterProductosByMarca();
+            checkbox.checked = !checkbox.checked; // Alternar el estado del checkbox
+            element.classList.toggle('seleccionada', checkbox.checked); // Alternar clase seleccionada
+            filterProductosByMarca(); // Filtrar productos
         });
     });
 }
+
 
 
 function filterProductosByMarca() {
