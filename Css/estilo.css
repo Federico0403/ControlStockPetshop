@@ -27,7 +27,7 @@ body {
 /* Contenedor principal */
 .contenedor-filtro {
     background-color: #f9f9f9; /* Fondo claro */
-    position: fixed; /* Fijado en la pantalla */
+    position: absolute; /* Fijado en la pantalla */
     top: 4.5vw    ; /* Separación del borde superior */
     left: 10px; /* Separación del borde izquierdo */
     width: 28vw; /* Ancho fijo del 28% del viewport */
