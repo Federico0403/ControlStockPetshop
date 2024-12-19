@@ -23,42 +23,67 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 150px rgba(0, 0, 0, 1);;
 }
-
-/* Contenedor que mantiene las marcas */
-/* Contenedor de las marcas (lado izquierdo de la pantalla) */
+/* Contenedor principal */
+/* Contenedor principal */
 .contenedor-filtro {
-            /* Centra los elementos horizontalmente */
-    position: fixed;            /* Fija el contenedor a la izquierda de la página */
-    top: 5vw;                   /* Empuja el contenedor hacia el principio de la ventana */
-    left: 2vw;                  /* Fija el contenedor al borde izquierdo */
-    width: 30vh;                /* Tamaño ajustable, por ejemplo, 300px */
-    height: 60em;              /* Ocupa toda la altura de la ventana */
-    overflow-y: auto;           /* Permite desplazamiento vertical si hay muchas marcas */
-    padding: 10px;
-    box-sizing: border-box;
-    border-radius: 0 10px 10px 0; /* Bordes redondeados solo a la derecha */
-    display: flex;
-    flex-direction: column;     /* Alinea las marcas en una columna */
-    gap: 10px;                  /* Espacio entre las marcas */
+    background-color: #f9f9f9; /* Fondo claro */
+    position: fixed; /* Fijado en la pantalla */
+    top: 5vw    ; /* Separación del borde superior */
+    left: 10px; /* Separación del borde izquierdo */
+    width: 28vw; /* Ancho fijo del 28% del viewport */
+    max-height: calc(100vh - 20px); /* Alto máximo basado en la pantalla menos margen */
+    padding: 15px; /* Espaciado interno */
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    border-radius: 10px; /* Bordes redondeados */
+    overflow-y: auto; /* Scroll vertical si es necesario */
+    box-sizing: border-box; /* Incluye padding y borde en el ancho */
+}
+
+/* Estilo de las marcas */
+.contenedor-marcas {
+    display: flex; /* Flexbox para organizar las marcas */
+    flex-wrap: wrap; /* Permite que las marcas se ajusten en varias filas */
+    gap: 10px; /* Espaciado entre las marcas */
 }
 
 .contenedor-marcas .marca {
-    background-color: #007404;  /* Fondo verde */
-    color: white;               /* Texto blanco */
-    font-size: 1em;             /* Tamaño de fuente */
-    text-align: center;         /* Alineación del texto */
-    border-radius: 5px;         /* Bordes redondeados */
-    padding: 10px 20px;         /* Relleno dentro del contenedor */
-    cursor: pointer;
-    user-select: none;          /* Impide seleccionar el texto */
-    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.7); /* Sombra */
-    width: auto;                /* Ajuste del ancho */
-    min-width: 7vw;           /* Ancho mínimo */
-    max-width: 200px;           /* Ancho máximo */
-    white-space: nowrap;        /* Evita que el texto se divida en varias líneas */
-    overflow: hidden;           /* Oculta el desbordamiento */
-    text-overflow: ellipsis;    /* Muestra "..." si el texto es demasiado largo */
+    background-color: #4caf50; /* Fondo verde atractivo */
+    color: white; /* Texto blanco */
+    font-size: 0.9em; /* Tamaño de fuente moderado */
+    text-align: center; /* Centrado del texto */
+    border-radius: 8px; /* Bordes redondeados */
+    padding: 10px; /* Relleno interno */
+    cursor: pointer; /* Indicador de clic */
+    user-select: none; /* Impide seleccionar el texto */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    flex: 1 1 1; /* Ancho flexible ajustado al contenido */
+    max-width: none; /* Permite crecer sin límites fijos */
+    min-width: 90px; /* Ancho mínimo */
+    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+    white-space: normal;
+ /* No recorta el texto */
+    overflow: visible; /* Permite que el contenido sea visible */
 }
+
+.contenedor-marcas .marca:hover {
+    background-color: #388e3c; /* Cambio de color al pasar el cursor */
+    transform: translateY(-3px); /* Efecto de levantamiento */
+}
+
+/* Estilo del scroll */
+.contenedor-filtro::-webkit-scrollbar {
+    width: 8px; /* Ancho del scroll */
+}
+
+.contenedor-filtro::-webkit-scrollbar-thumb {
+    background-color: #cccccc; /* Color del "pulgar" del scroll */
+    border-radius: 4px; /* Bordes redondeados */
+}
+
+.contenedor-filtro::-webkit-scrollbar-thumb:hover {
+    background-color: #aaaaaa; /* Color al pasar el cursor */
+}
+
 
 .contenedor-marcas .marca:hover {
     background-color: #004d00;  /* Fondo verde más oscuro cuando se pasa el ratón */
@@ -83,7 +108,7 @@ input[type="checkbox"] {
 
 /* Contenedor principal que no choque con las marcas */
 .contenedor-principal {
-    margin-left: 320px; /* Deja un espacio a la izquierda para el contenedor de marcas */
+    margin-left: 10px; /* Deja un espacio a la izquierda para el contenedor de marcas */
     padding: 20px;      /* Agrega un poco de padding para separación */
 }
 
@@ -127,6 +152,7 @@ input[type="checkbox"] {
     background-color: #fff;   /* Fondo blanco */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para resaltar */
     border-radius: 8px;       /* Bordes redondeados */
+    border: solid;
     padding: 20px;            /* Espaciado interno */
     box-sizing: border-box;   /* Incluye padding en el tamaño total */
     z-index: 1000;            /* Asegura que esté sobre otros elementos */
@@ -179,6 +205,73 @@ input[type="checkbox"] {
 }
 
 
+/* Estilo general del navbar */
+.navbar {
+    background-color: #4caf50; /* Color verde primario */
+    padding: 10px 20px; /* Espaciado interno */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+    font-family: 'Arial', sans-serif; /* Fuente elegante */
+}
+
+/* Marca del navbar */
+.navbar-brand {
+    font-size: 1.5em; /* Tamaño de texto más grande */
+    font-weight: bold; /* Negrita */
+    color: #fff; /* Color blanco */
+    text-transform: uppercase; /* Texto en mayúsculas */
+    letter-spacing: 2px; /* Espaciado entre letras */
+}
+
+/* Lista de navegación */
+.navbar-nav {
+    display: flex; /* Flexbox para organizar elementos */
+    gap: 20px; /* Espaciado entre elementos */
+    margin-left: auto; /* Alinea los enlaces a la derecha */
+}
+
+/* Elementos individuales de la navegación */
+.nav-item {
+    list-style: none; /* Elimina viñetas */
+}
+
+/* Enlaces de navegación */
+.nav-link {
+    color: #fff; /* Color blanco */
+    font-size: 1em; /* Tamaño de fuente base */
+    text-decoration: none; /* Sin subrayado */
+    padding: 8px 12px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transiciones suaves */
+}
+
+/* Efecto al pasar el cursor por los enlaces */
+.nav-link:hover {
+    background-color: #388e3c; /* Color verde más oscuro */
+    color: #f1f1f1; /* Color más claro al pasar el mouse */
+}
+
+/* Enlaces activos */
+.nav-link.active {
+    background-color: #2e7d32; /* Color destacado */
+    color: #fff; /* Texto blanco */
+}
+
+/* Adaptabilidad */
+@media (max-width: 768px) {
+    .navbar {
+        flex-wrap: wrap; /* Permite que el contenido se ajuste en pantallas pequeñas */
+    }
+    .navbar-nav {
+        gap: 10px; /* Reduce el espaciado en pantallas pequeñas */
+    }
+}
+
+
+.nav-color {
+    background-color: #1b721e;
+}
 
 
 

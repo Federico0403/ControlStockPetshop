@@ -332,11 +332,11 @@ function showProveedores() {
     div.innerHTML = "";
 
     // Crear una fila para los proveedores
-    let proveedoresHTML = `<div class="row">`;
+    let proveedoresHTML = `<div class="">`;
 
     proveedores.forEach(proveedor => {
         proveedoresHTML += ` 
-        <div class="col-md-3 mb-4"> <!-- Cada proveedor en una columna con espacio -->
+        <div class="">
             <div class='card'>
                 <div class='card-body'>
                     <h5 class='card-title'>
