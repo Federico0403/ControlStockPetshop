@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-12-2024 a las 15:50:44
+-- Tiempo de generación: 21-12-2024 a las 00:32:57
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -133,7 +133,30 @@ INSERT INTO `productos` (`IDProducto`, `Nombre`, `Marca`, `Tipo`, `Precio`, `Des
 (128, 'Diabetic Por kg', 'Royal canin', 'comida', 7400, 'x% De proteinas'),
 (129, 'Satiety Perro Por Bolsa 15kg', 'Royal canin', 'comida', 83000, 'x% De proteinas'),
 (130, 'Satiety Perro Por kg', 'Royal canin', 'comida', 5600, 'x% De proteinas'),
-(131, 'Max Adult Por Bolsa 15kg', 'Royal canin', 'comida', 71000, 'x% De proteinas');
+(131, 'Max Adult Por Bolsa 15kg', 'Royal canin', 'comida', 71000, 'x% De proteinas'),
+(132, 'Maxi Adult Por Bolsa 15kg', 'Royal canin', 'comida', 6200, 'x% De proteinas'),
+(133, 'Medium Adult Por Bolsa 15kg', 'Royal canin', 'comida', 79000, 'x% De proteinas'),
+(134, 'Medium Adult Por kg', 'Royal canin', 'comida', 6200, 'x% De proteinas'),
+(135, 'Bull Dog Frances Adulto Por Bolsa 7.5 kg', 'Royal canin', 'comida', 50500, 'x% De proteinas'),
+(136, 'Bull Dog Frances Adulto Por kg', 'Royal canin', 'comida', 6700, 'x% De proteinas'),
+(137, 'Cat Por kg', 'Super Premiun', 'comida', 7600, 'x% De proteinas'),
+(138, 'Conejo Ganave Por kg ', 'Productos Sin Marca', 'Utilidad', 1000, 'x% De proteinas'),
+(139, 'Maderitas/Pellets Por kg', 'Productos Sin Marca', 'Utilidad', 800, 'x'),
+(140, 'Maderitas/Pellets Por Bolsa', 'Productos Sin Marca', 'Utilidad', 8500, 'x'),
+(141, 'Latas', 'Agility', 'comida', 3200, '99% De proteinas Animal'),
+(142, 'Bocaditos Naturales', 'Auki', 'comida', 1600, 'x% De proteinas'),
+(143, 'Pouch', 'Cat Chow', 'comida', 1400, 'x% De proteinas'),
+(144, 'Pouch', 'Felix', 'comida', 1400, 'x% De proteinas'),
+(145, 'Pouch', 'Dog Chow', 'comida', 1400, 'x% De proteinas'),
+(146, 'Pouch', 'Whiskas', 'comida', 900, 'x% De proteinas'),
+(147, 'Pouch', 'Pedigri', 'comida', 900, 'x% De proteinas'),
+(148, 'Lavanda', 'Alta Gama', 'comida', 6700, 'x% De proteinas'),
+(149, 'Limon', 'Alta Gama', 'comida', 6700, 'x% De proteinas'),
+(150, 'Bolsa Negra jajajj', 'Alta Gama', 'comida', 6500, 'x% De proteinas'),
+(151, 'Shampoo', 'Higiene', 'Higiene', 4500, 'x'),
+(152, 'Acondicionador', 'Higiene', 'Higiene', 4500, 'x'),
+(153, 'Locion OssPret', 'Higiene', 'Higiene', 5500, 'x'),
+(154, 'Pino Pack Viruta', 'Productos Sin Marca', 'Utilidad', 1150, 'x');
 
 -- --------------------------------------------------------
 
@@ -188,7 +211,7 @@ ALTER TABLE `proveedor`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `IDProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
+  MODIFY `IDProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=155;
 
 --
 -- AUTO_INCREMENT de la tabla `proveedor`
