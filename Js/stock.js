@@ -122,10 +122,13 @@ function showMarcas(marcasSeleccionadas = []) {
     let div = document.getElementById("filtrosMarca");
     div.innerHTML = "";
 
+    // Ordenar las marcas alfabéticamente
+    const marcasOrdenadas = [...todasLasMarcas].sort((a, b) => a.localeCompare(b));
+
     // Crear la fila de marcas
     let marcasHTML = `<div class="row contenedor-filtro"> <h1>Filtros</h1>`;
     
-    todasLasMarcas.forEach(marca => {
+    marcasOrdenadas.forEach(marca => {
         const isSelected = marcasSeleccionadas.includes(marca); // Verificar si está seleccionada
         marcasHTML += `
         <div class="col-md-3 mb-3 contenedor-marcas">
@@ -150,6 +153,7 @@ function showMarcas(marcasSeleccionadas = []) {
         });
     });
 }
+
 
 
 
