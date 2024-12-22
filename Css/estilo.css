@@ -439,5 +439,65 @@ input[type="checkbox"] {
     background-color: #96bb9b;  /* Cambiar el fondo a un verde más oscuro cuando se pasa el mouse */
     border-color: #96bb9b;      /* Cambiar el borde al mismo color */
 }
-        
+      
+
+/* Contenedor principal */
+.contenedor-productos {
+    display: flex; /* Usamos flexbox para alinear los elementos */
+    align-items: flex-start; /* Alineamos los items al principio */
+    margin-bottom: 15px;
+    padding: 15px;
+    border: 1px solid #ddd; /* Borde sutil para separar cada producto */
+    border-radius: 10px;
+}
+
+/* Estilos para la imagen */
+.contenedor-productos .imagen {
+    flex: 0 0 20%; /* El ancho de la imagen será el 20% del contenedor */
+    padding: 10px;
+}
+
+.contenedor-productos .imagen img {
+    width: 100%; /* Hacer que la imagen ocupe todo el espacio disponible */
+    height: auto; /* Mantener la relación de aspecto */
+    border-radius: 8px; /* Bordes redondeados para la imagen */
+}
+
+/* Estilos para el bloque de detalles (nombre, precio y descripción) */
+.contenedor-productos .detalles {
+    flex: 1; /* El bloque de detalles ocupa el espacio restante */
+    padding: 10px;
+}
+
+.contenedor-productos .detalles .titulo {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.contenedor-productos .detalles .precio {
+    font-size: 24px;
+    color: #28a745;
+    margin-bottom: 10px;
+}
+
+.contenedor-productos .detalles .descripcion {
+    font-size: 16px;
+    color: #555;
+}
+
+/* Estilos para los botones */
+.contenedor-productos .acciones {
+    display: flex;
+    flex-direction: column; /* Los botones estarán en una columna */
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 10px;
+}
+
+.contenedor-productos .acciones .botones {
+    margin-bottom: 10px;
+    width: 100%;
+}
+
 

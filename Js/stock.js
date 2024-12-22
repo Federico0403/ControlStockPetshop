@@ -252,16 +252,21 @@ function showProductos() {
     // Recorrer productos y crear filas con botones de eliminar y modificar
     productos.forEach(producto => {
         let html = `
-        <div class="row mb-3 text-center contenedor-productos">
-            <div class="col-md-2 productos">${producto.Nombre || 'Stock no disponible'}</div>
-            <div class="col-md-2 productos">${producto.Precio ? `$${producto.Precio}` : 'Precio no disponible'}</div>
-            <div class="col-md-3 productos">${producto.Descripcion || 'Tipo no disponible'}</div>
-            <div class="col-md-2">
-                <button class="botones" onclick="modificarProducto(${producto.IDProducto})">Modificar</button>
-                <button class="botones" onclick="eliminarProducto(${producto.IDProducto})">Eliminar</button>
-            </div>
+    <div class="row mb-3 contenedor-productos">
+        <div class="col-md-2 productos imagen">
+            <img src="${producto.Imagen || 'ruta/de/imagen/default.jpg'}" alt="${producto.Nombre}" class="img-fluid">
         </div>
-        `;
+        <div class="col-md-7 productos detalles">
+            <div class="titulo">${producto.Nombre || 'Nombre no disponible'}</div>
+            <h2 class="precio">${producto.Precio ? `$${producto.Precio}` : 'Precio no disponible'}</h2>
+            <p class="descripcion">${producto.Descripcion || 'Descripción no disponible'}</p>
+        </div>
+        <div class="col-md-3 acciones">
+            <button class="botones" onclick="modificarProducto(${producto.IDProducto})">Modificar</button>
+            <button class="botones" onclick="eliminarProducto(${producto.IDProducto})">Eliminar</button>
+        </div>
+    </div>
+`;
         div.innerHTML += html;
     });
 
