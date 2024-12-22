@@ -122,40 +122,86 @@ function showMarcas(marcasSeleccionadas = []) {
     let div = document.getElementById("filtrosMarca");
     div.innerHTML = "";
 
-    // Ordenar las marcas alfabéticamente
-    const marcasOrdenadas = [...todasLasMarcas].sort((a, b) => a.localeCompare(b));
-
-    // Crear la fila de marcas
-    let marcasHTML = `<div class="row contenedor-filtro"> <h1>Filtros</h1>`;
-    
-    marcasOrdenadas.forEach(marca => {
-        const isSelected = marcasSeleccionadas.includes(marca); // Verificar si está seleccionada
-        marcasHTML += `
-        <div class="col-md-3 mb-3 contenedor-marcas">
-            <div class="marca ${isSelected ? 'seleccionada' : ''}" id="marca-${marca}" data-marca="${marca}">
-                <input type="checkbox" class="form-check-input" value="${marca}" id="checkbox-${marca}" ${isSelected ? "checked" : ""} style="display: none;">
-                <span class="marca-nombre">${marca}</span>
-            </div>
-        </div>`;
-    });
-
-    marcasHTML += `</div>`; // Cerrar la fila
+    // Crear el buscador
+    let marcasHTML = `
+        <div class="row contenedor-filtro">
+            <input type="text" id="searchMarcas" class="form-control mb-3" placeholder="Busca una marca...">
+        
+        <div class="row contenedor-marcas" id="marcasContainer">
+        </div>
+    `;
 
     div.innerHTML = marcasHTML;
 
-    // Agregar eventos para alternar el estado del checkbox y la clase
+    // Ordenar las marcas alfabéticamente
+    const marcasOrdenadas = [...todasLasMarcas].sort((a, b) => a.localeCompare(b));
+
+    // Filtrar dinámicamente según la entrada del buscador
+    const searchInput = document.getElementById('searchMarcas');
+    searchInput.addEventListener('input', (e) => {
+        const searchTerm = e.target.value.toLowerCase();
+        renderFilteredMarcas(searchTerm, marcasOrdenadas, marcasSeleccionadas);
+    });
+
+    // Render inicial vacío
+    renderFilteredMarcas("", marcasOrdenadas, marcasSeleccionadas);
+}
+
+function renderFilteredMarcas(searchTerm, marcasOrdenadas, marcasSeleccionadas) {
+    const marcasContainer = document.getElementById('marcasContainer');
+    marcasContainer.innerHTML = ""; // Limpiar contenido previo
+
+    // Mostrar marcas que comiencen con el texto ingresado
+    marcasOrdenadas.forEach(marca => {
+        const isSelected = marcasSeleccionadas.includes(marca);
+
+        // Si la marca está seleccionada, siempre mostrarla
+        if (searchTerm.trim() === "" || marca.toLowerCase().startsWith(searchTerm)) {
+            marcasContainer.innerHTML += `
+                <div class="col-md-3 mb-3 contenedor-marcas" id="marca-${marca}">
+                    <div class="marca ${isSelected ? 'seleccionada' : ''}" data-marca="${marca}">
+                        <input type="checkbox" class="form-check-input" value="${marca}" id="checkbox-${marca}" ${isSelected ? "checked" : ""} style="display: none;">
+                        <span class="marca-nombre">${marca}</span>
+                    </div>
+                </div>
+                </div>`;
+        }
+    });
+
+    // Reasignar eventos a los elementos filtrados
+    addMarcaClickEvent(marcasOrdenadas, marcasSeleccionadas);
+}
+
+function addMarcaClickEvent(marcasOrdenadas, marcasSeleccionadas) {
     document.querySelectorAll('.marca').forEach(element => {
-        element.addEventListener('click', () => {
+        element.addEventListener('click', (e) => {
+            e.stopPropagation(); // Evitar que el clic se propague y afecte al input
+
             const checkbox = element.querySelector('input[type="checkbox"]');
             checkbox.checked = !checkbox.checked; // Alternar el estado del checkbox
             element.classList.toggle('seleccionada', checkbox.checked); // Alternar clase seleccionada
             filterProductosByMarca(); // Filtrar productos
+
+            // Actualizar marcas seleccionadas
+            updateMarcasSeleccionadas();
+
+            // Mantener el texto del buscador intacto
+            const searchInput = document.getElementById('searchMarcas');
+            const searchTerm = searchInput.value.toLowerCase();  // Capturamos el valor actual del buscador
+
+            // Re-renderizar las marcas con el mismo texto de búsqueda
+            renderFilteredMarcas(searchTerm, marcasOrdenadas, marcasSeleccionadas);
         });
     });
 }
 
-
-
+function updateMarcasSeleccionadas() {
+    // Actualizar las marcas seleccionadas
+    marcasSeleccionadas = [];
+    document.querySelectorAll('input[type="checkbox"]:checked').forEach(checkbox => {
+        marcasSeleccionadas.push(checkbox.value);
+    });
+}
 
 function filterProductosByMarca() {
     // Obtener todas las marcas seleccionadas
@@ -167,6 +213,11 @@ function filterProductosByMarca() {
     // Llamar a getAllProductos con las marcas seleccionadas
     getAllProductos(marcasSeleccionadas);
 }
+
+
+
+
+
 
 async function eliminarProducto(idProducto) {
     if (confirm) {
