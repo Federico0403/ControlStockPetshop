@@ -48,7 +48,7 @@ body {
 
 }
 
-.contenedor-marcas .marca {
+.contenedor-marcas .marca{
     padding: 10px 20px;
     border: 2px solid #ccc;
     border-radius: 25px;
@@ -63,7 +63,7 @@ body {
 }
 
 /* Estilo cuando la marca está seleccionada */
-.marca.seleccionada {
+.marca.seleccionada{
     color: white;
     background-color: #2c5f0d; /* Fondo azul */
     border: 2px solid #2c5f0d; /* Borde más oscuro */
@@ -284,7 +284,7 @@ input[type="checkbox"] {
 
 /* Efecto al pasar el cursor por los enlaces */
 .nav-link:hover {
-    background-color: #388e3c; /* Color verde más oscuro */
+    background-color: #ffffff; /* Color verde más oscuro */
     color: #f1f1f1; /* Color más claro al pasar el mouse */
 }
 
@@ -293,6 +293,7 @@ input[type="checkbox"] {
     background-color: #2e7d32; /* Color destacado */
     color: #fff; /* Texto blanco */
 }
+
 
 /* Adaptabilidad */
 @media (max-width: 768px) {
@@ -314,6 +315,10 @@ input[type="checkbox"] {
     color: pink; /* Cambia a rosa */
     font-family: 'Pacifico', cursive;
     font-size: 0.8vw;
+}
+#blanco {
+    color: white;
+    font-size: 2vw;
 }
 .navbar-brand{
     color: white;
@@ -418,4 +423,21 @@ input[type="checkbox"] {
             opacity: 0.8;
         }
 
+
+.botones {
+    background-color: #ffffff;  /* Color verde brillante */
+    border: 2px solid #b4b4b4;  /* Borde del mismo color que el fondo */
+    border-radius: 20px;         /* Bordes redondeados */
+    padding: 10px 20px;         /* Espaciado interno */
+    font-size: 16px;            /* Tamaño de fuente */
+    font-weight: bold;          /* Hacer el texto en negrita */
+    text-align: center;         /* Centrar el texto */
+    cursor: pointer;           /* Cambiar el cursor a mano cuando se pasa sobre el botón */
+}
+
+.botones:hover {
+    background-color: #96bb9b;  /* Cambiar el fondo a un verde más oscuro cuando se pasa el mouse */
+    border-color: #96bb9b;      /* Cambiar el borde al mismo color */
+}
+        
 

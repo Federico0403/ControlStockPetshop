@@ -245,13 +245,7 @@ function showProductos() {
 
     // Crear los encabezados
     let encabezados = `
-        <div class="row mb-3 text-center">
-            <div class="col-md-3"><strong>Marca</strong></div>
-            <div class="col-md-2"><strong>Nombre</strong></div>
-            <div class="col-md-2"><strong>Precio</strong></div> 
-            <div class="col-md-3"><strong>Descripcion</strong></div>
-            <div class="col-md-2"><strong>Acciones</strong></div>  <!-- Nueva columna para los botones -->
-        </div>
+
     `;
     div.innerHTML += encabezados;
 
@@ -259,13 +253,12 @@ function showProductos() {
     productos.forEach(producto => {
         let html = `
         <div class="row mb-3 text-center contenedor-productos">
-            <div class="col-md-3 productos">${producto.Marca || 'Marca no disponible'}</div>
             <div class="col-md-2 productos">${producto.Nombre || 'Stock no disponible'}</div>
             <div class="col-md-2 productos">${producto.Precio ? `$${producto.Precio}` : 'Precio no disponible'}</div>
             <div class="col-md-3 productos">${producto.Descripcion || 'Tipo no disponible'}</div>
             <div class="col-md-2">
-                <button class="btn btn-warning btn-sm" onclick="modificarProducto(${producto.IDProducto})">Modificar</button>
-                <button class="btn btn-danger btn-sm" onclick="eliminarProducto(${producto.IDProducto})">Eliminar</button>
+                <button class="botones" onclick="modificarProducto(${producto.IDProducto})">Modificar</button>
+                <button class="botones" onclick="eliminarProducto(${producto.IDProducto})">Eliminar</button>
             </div>
         </div>
         `;
