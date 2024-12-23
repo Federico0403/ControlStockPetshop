@@ -125,7 +125,7 @@ function showMarcas(marcasSeleccionadas = []) {
     // Crear el buscador
     let marcasHTML = `
         <div class="row contenedor-filtro">
-            <input type="text" id="searchMarcas" class="form-control mb-3" placeholder="Busca una marca...">
+            <input type="text" id="searchMarcas" class="form-control mb-3" placeholder="Busca una marca..." autocomplete="off">
         
         <div class="row contenedor-marcas" id="marcasContainer">
         </div>
@@ -242,7 +242,6 @@ async function eliminarProducto(idProducto) {
 
 // Luego el código para mostrar los productos
 function showProductos() {
-    console.log("Productos disponibles:", productos);  // Verifica que productos esté correctamente cargado
     
     let div = document.getElementById("contenedorMostrar");
     div.innerHTML = "";
@@ -276,22 +275,9 @@ function showProductos() {
 let carrito = []; 
 
 function añadirAlCarrito(idProducto) {
-    console.log("ID Producto recibido:", idProducto);
-
-    // Mostrar todos los productos para depurar
-    console.log("Array de productos:", productos);
-
-    // Verificar si los IDs de los productos son números o strings
-    productos.forEach(producto => {
-        console.log("Tipo de IDProducto en producto:", typeof producto.IDProducto);
-    });
-
     const productoSeleccionado = productos.find(producto => {
-        console.log(`Comparando ${producto.IDProducto} con ${idProducto}`);
         return producto.IDProducto === String(idProducto);  // Convierte idProducto a string
     });
-
-    console.log("Producto encontrado:", productoSeleccionado);
 
     if (!productoSeleccionado) {
         alert("Producto no encontrado");
@@ -309,8 +295,6 @@ function añadirAlCarrito(idProducto) {
         carrito.push({ ...productoSeleccionado, cantidad: 1, peso: 1 }); // Inicializamos el producto con cantidad 1 y peso 1
     }
 
-    console.log("Carrito actualizado:", carrito);  // Ver el carrito actualizado
-
     actualizarCarrito();
 }
 
@@ -322,7 +306,15 @@ function actualizarCarrito() {
     let total = 0;
 
     carrito.forEach((producto, index) => {
-        // Asegurarse de que el precio y peso sean números
+        // Asegurarse de que Precio y peso sean números válidos
+        const precio = parseFloat(producto.Precio);
+        const peso = parseFloat(producto.peso);
+
+        // Si alguno no es un número válido, asignamos 0
+        if (isNaN(precio)) producto.Precio = 0;
+        if (isNaN(peso)) producto.peso = 1;  // Asignamos un peso por defecto de 1 si no es válido
+
+        // Calcular el subtotal
         const subtotal = producto.Precio * producto.peso;
         total += subtotal;
 
@@ -332,7 +324,7 @@ function actualizarCarrito() {
                     <p>${producto.Nombre}</p>
                 </div>
                 <div class="col-md-2">
-                    <input type="number" min="0" step="0.1" class="form-control" 
+                    <input id="caca" type="number" min="0" step="0.1" class="form-control" 
                         value="${producto.peso}" onchange="cambiarPeso(${index}, this.value)">
                 </div>
                 <div class="col-md-2">
@@ -354,6 +346,7 @@ function actualizarCarrito() {
         </div>
     `;
 }
+
 
 // Función para cambiar el peso de un producto en el carrito
 function cambiarPeso(index, nuevoPeso) {
