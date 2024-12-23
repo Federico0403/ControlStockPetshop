@@ -175,19 +175,19 @@ function renderFilteredMarcas(searchTerm, marcasOrdenadas, marcasSeleccionadas) 
 function addMarcaClickEvent(marcasOrdenadas, marcasSeleccionadas) {
     document.querySelectorAll('.marca').forEach(element => {
         element.addEventListener('click', (e) => {
-            e.stopPropagation(); // Evitar que el clic se propague y afecte al input
+            e.stopPropagation();
 
             const checkbox = element.querySelector('input[type="checkbox"]');
-            checkbox.checked = !checkbox.checked; // Alternar el estado del checkbox
-            element.classList.toggle('seleccionada', checkbox.checked); // Alternar clase seleccionada
-            filterProductosByMarca(); // Filtrar productos
+            checkbox.checked = !checkbox.checked;
+            element.classList.toggle('seleccionada', checkbox.checked);
+            filterProductosByMarca();
 
             // Actualizar marcas seleccionadas
-            updateMarcasSeleccionadas();
+            marcasSeleccionadas = updateMarcasSeleccionadas();
 
             // Mantener el texto del buscador intacto
             const searchInput = document.getElementById('searchMarcas');
-            const searchTerm = searchInput.value.toLowerCase();  // Capturamos el valor actual del buscador
+            const searchTerm = searchInput.value.toLowerCase();
 
             // Re-renderizar las marcas con el mismo texto de búsqueda
             renderFilteredMarcas(searchTerm, marcasOrdenadas, marcasSeleccionadas);
@@ -196,12 +196,14 @@ function addMarcaClickEvent(marcasOrdenadas, marcasSeleccionadas) {
 }
 
 function updateMarcasSeleccionadas() {
-    // Actualizar las marcas seleccionadas
-    marcasSeleccionadas = [];
+    let seleccionadas = [];
     document.querySelectorAll('input[type="checkbox"]:checked').forEach(checkbox => {
-        marcasSeleccionadas.push(checkbox.value);
+        seleccionadas.push(checkbox.value);
     });
+    return seleccionadas;
 }
+
+
 
 function filterProductosByMarca() {
     // Obtener todas las marcas seleccionadas
