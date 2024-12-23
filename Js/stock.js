@@ -242,38 +242,132 @@ async function eliminarProducto(idProducto) {
 
 // Luego el código para mostrar los productos
 function showProductos() {
+    console.log("Productos disponibles:", productos);  // Verifica que productos esté correctamente cargado
+    
     let div = document.getElementById("contenedorMostrar");
     div.innerHTML = "";
 
-    // Crear los encabezados
-    let encabezados = `
-
-    `;
-    div.innerHTML += encabezados;
-
-    // Recorrer productos y crear filas con botones de eliminar y modificar
     productos.forEach(producto => {
         let html = `
-    <div class="row mb-3 contenedor-productos">
-        <div class="col-md-2 productos imagen">
-            <img src="${producto.Imagen || 'img/logo.png'}" alt="${producto.Nombre}" class="img-fluid">
-        </div>
-        <div class="col-md-7 productos detalles">
-            <div class="titulo">${producto.Nombre || 'Nombre no disponible'}</div>
-            <h2 class="precio">${producto.Precio ? `$${producto.Precio}` : 'Precio no disponible'}</h2>
-            <p class="descripcion">${producto.Descripcion || 'Descripción no disponible'}</p>
-        </div>
-        <div class="col-md-3 acciones">
-            <button class="botones" onclick="modificarProducto(${producto.IDProducto})">Modificar</button>
-            <button class="botones" onclick="eliminarProducto(${producto.IDProducto})">Eliminar</button>
-        </div>
-    </div>
-`;
+            <div class="row mb-3 contenedor-productos">
+                <div class="col-md-2 productos imagen">
+                    <img src="${producto.Imagen || 'img/logo.png'}" alt="${producto.Nombre}" class="img-fluid">
+                </div>
+                <div class="col-md-7 productos detalles">
+                    <div class="titulo">${producto.Nombre || 'Nombre no disponible'}</div>
+                    <h2 class="precio">${producto.Precio ? `$${producto.Precio}` : 'Precio no disponible'}</h2>
+                    <p class="descripcion">${producto.Descripcion || 'Descripción no disponible'}</p>
+                </div>
+                <div class="col-md-3 acciones">
+                    <button class="botones" onclick="modificarProducto(${producto.IDProducto})">Modificar</button>
+                    <button class="botones" onclick="eliminarProducto(${producto.IDProducto})">Eliminar</button>
+                    <button class="botones" onclick="añadirAlCarrito(${producto.IDProducto})">Añadir al carrito</button>  <!-- Botón Añadir -->
+                </div>
+            </div>
+        `;
         div.innerHTML += html;
     });
 
     div.innerHTML += `<p class="mt-3 text-center"><small>Mostrando ${productos.length} Productos</small></p>`;
 }
+
+
+// Arreglo para almacenar los productos en el carrito
+let carrito = []; 
+
+function añadirAlCarrito(idProducto) {
+    console.log("ID Producto recibido:", idProducto);
+
+    // Mostrar todos los productos para depurar
+    console.log("Array de productos:", productos);
+
+    // Verificar si los IDs de los productos son números o strings
+    productos.forEach(producto => {
+        console.log("Tipo de IDProducto en producto:", typeof producto.IDProducto);
+    });
+
+    const productoSeleccionado = productos.find(producto => {
+        console.log(`Comparando ${producto.IDProducto} con ${idProducto}`);
+        return producto.IDProducto === String(idProducto);  // Convierte idProducto a string
+    });
+
+    console.log("Producto encontrado:", productoSeleccionado);
+
+    if (!productoSeleccionado) {
+        alert("Producto no encontrado");
+        return;
+    }
+
+    // Asegurarnos de que el precio es un número
+    productoSeleccionado.Precio = parseFloat(productoSeleccionado.Precio);
+
+    // Si el producto ya está en el carrito, solo aumentamos la cantidad
+    const productoEnCarrito = carrito.find(item => item.IDProducto === idProducto);
+    if (productoEnCarrito) {
+        productoEnCarrito.cantidad += 1; // Aumentamos la cantidad en 1 por cada vez que se añada al carrito
+    } else {
+        carrito.push({ ...productoSeleccionado, cantidad: 1, peso: 1 }); // Inicializamos el producto con cantidad 1 y peso 1
+    }
+
+    console.log("Carrito actualizado:", carrito);  // Ver el carrito actualizado
+
+    actualizarCarrito();
+}
+
+// Función para actualizar el carrito y mostrarlo
+function actualizarCarrito() {
+    const carritoDiv = document.getElementById("ventas");
+    carritoDiv.innerHTML = "";
+
+    let total = 0;
+
+    carrito.forEach((producto, index) => {
+        // Asegurarse de que el precio y peso sean números
+        const subtotal = producto.Precio * producto.peso;
+        total += subtotal;
+
+        const html = `
+            <div class="row mb-2 carrito-producto">
+                <div class="col-md-6">
+                    <p>${producto.Nombre}</p>
+                </div>
+                <div class="col-md-2">
+                    <input type="number" min="0" step="0.1" class="form-control" 
+                        value="${producto.peso}" onchange="cambiarPeso(${index}, this.value)">
+                </div>
+                <div class="col-md-2">
+                    <p>$${subtotal.toFixed(2)}</p>
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-danger btn-sm" onclick="eliminarDelCarrito(${index})">Eliminar</button>
+                </div>
+            </div>
+        `;
+
+        carritoDiv.innerHTML += html;
+    });
+
+    carritoDiv.innerHTML += `
+        <div class="row mt-3">
+            <div class="col-md-6"><strong>Total:</strong></div>
+            <div class="col-md-6 text-end"><strong>$${total.toFixed(2)}</strong></div>
+        </div>
+    `;
+}
+
+// Función para cambiar el peso de un producto en el carrito
+function cambiarPeso(index, nuevoPeso) {
+    carrito[index].peso = parseFloat(nuevoPeso);
+    actualizarCarrito();  // Recalcular el carrito con el nuevo peso
+}
+
+// Función para eliminar un producto del carrito
+function eliminarDelCarrito(index) {
+    carrito.splice(index, 1);  // Elimina el producto del carrito
+    actualizarCarrito();  // Recalcular el carrito después de eliminar
+}
+
+
 
 // Mostrar el formulario de modificación y cargar los datos del producto
 async function modificarProducto(idProducto) {

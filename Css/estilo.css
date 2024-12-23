@@ -583,3 +583,12 @@ textarea.form-control {
 }
 
 
+#ventas{
+    background-color: rgb(255, 255, 255);
+    position: fixed;
+    left: 70.4vw;
+    top: 3.7vh;
+    width: 29vw;
+    height: 50vh;
+}
+
