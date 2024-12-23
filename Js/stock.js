@@ -319,7 +319,7 @@ function actualizarCarrito() {
         total += subtotal;
 
         const html = `
-            <div class="row mb-2 carrito-producto">
+            <div class="row carrito-producto">
                 <div class="col-md-6">
                     <p>${producto.Nombre}</p>
                 </div>
@@ -340,9 +340,9 @@ function actualizarCarrito() {
     });
 
     carritoDiv.innerHTML += `
-        <div class="row mt-3 preciototal">
+        <div class="row mt-3 preciototal totalprecio">
             <div class="col-md-6"><strong>Total:</strong></div>
-            <div class="col-md-6 text-end"><strong>$${total.toFixed(2)}</strong></div>
+            <div class="col-md-6 text-end "><strong>$${total.toFixed(2)}</strong></div>
         </div>
     `;
 }
