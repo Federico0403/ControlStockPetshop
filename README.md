@@ -10,10 +10,7 @@ Esta tabla almacena la información de los productos disponibles en la petshop.
 | `Marca`       | `VARCHAR`           | Marca del producto.                                           |
 | `Tipo`        | `ENUM` o `VARCHAR`  | Tipo de producto (ej.: alimentación, juguetes, medicinas, etc.). |
 | `Precio`      | `DECIMAL(10,2)`     | Precio del producto.                                          |
-| `StockActual` | `INT`               | Cantidad disponible en el inventario.                        |
-| `StockMinimo` | `INT`               | Cantidad mínima antes de necesitar reposición.                |
 | `Descripción` | `TEXT`              | Detalles opcionales del producto.                            |
-| `FechaAlta`   | `DATE`              | Fecha de ingreso del producto al sistema.                    |
 
 ---
 
@@ -29,19 +26,6 @@ Información de los proveedores asociados a los productos.
 
 ---
 
-## 3. Tabla: MovimientosStock
-Registra entradas, salidas y ajustes en el inventario.
-
-| Campo           | Tipo                | Descripción                                                   |
-|------------------|---------------------|---------------------------------------------------------------|
-| `IdMovimiento`   | PK, único           | Identificador único del movimiento.                          |
-| `IdProducto`     | FK (`Productos.IdProducto`) | Producto afectado por el movimiento.                      |
-| `TipoMovimiento` | `ENUM` (`entrada`, `salida`) | Tipo de movimiento realizado.                               |
-| `Cantidad`       | `INT`               | Número de unidades involucradas en el movimiento.            |
-| `FechaMovimiento`| `DATETIME`          | Fecha y hora del movimiento.                                 |
-| `Usuario`        | `VARCHAR` (opcional)| Persona responsable del movimiento.                          |
-
----
 
 ### Notas
 - Las relaciones clave entre tablas están definidas por claves foráneas (`FK`).

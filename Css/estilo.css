@@ -228,18 +228,7 @@ textarea.form-control {
     margin-top: 10px;
 }
 
-.botones {
-    padding: 10px 20px;
-    font-size: 1em;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #007bff;
-}
 
-.botones:hover {
-    background-color: #0056b3;
-}
 
 
 
@@ -388,6 +377,7 @@ textarea.form-control {
 
 .nav-color {
     background-color: #1b721e;
+    border-bottom: solid white 1px;
 }
 
 
@@ -583,12 +573,85 @@ textarea.form-control {
 }
 
 
-#ventas{
-    background-color: rgb(255, 255, 255);
+#ventas {
+    background-color: #1b721e; /* Fondo verde oscuro */
     position: fixed;
     left: 70.4vw;
-    top: 3.7vh;
+    top: 3.3vh;
     width: 29vw;
     height: 50vh;
+    padding: 1vw;
+    border-radius: 5px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    justify-content: center;
+    align-items: center;
+    color: white; /* Color de texto blanco */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra suave */
+    border: solid white 1px;
 }
 
+/* Estilo para los productos en el carrito */
+.carrito-producto {
+    background-color: #e0f7e9; /* Verde claro */
+    border: 1px solid #2c5f0d;  /* Bordes verde más oscuro */
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Estilo para el texto dentro del producto en el carrito */
+.carrito-producto p {
+    margin: 0;
+    font-weight: bold;
+    color: #00695c; /* Verde oscuro */
+}
+
+/* Estilo para los inputs de tipo número en el carrito */
+.numero {
+    width: 100px;
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #2c5f0d; /* Borde verde oscuro */
+    text-align: center;
+    font-size: 1rem;
+    color: #00695c; /* Verde oscuro */
+}
+
+/* Estilo para los botones en el carrito */
+.botones {
+    background-color: #ffffff; /* Fondo verde oscuro */
+    color: rgb(0, 0, 0);
+    padding: 8px 15px;
+    border: solid rgb(9, 51, 0) 1px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Efecto hover en los botones */
+.botones:hover {
+    background-color: #2c5f0d; /* Fondo verde más claro al pasar el mouse */
+}
+
+/* Estilo para la sección de total en el carrito */
+.total-section {
+    background-color: #1b721e; /* Fondo verde oscuro */
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Estilo para el texto dentro de la sección de total */
+.total-section strong {
+    font-size: 1.2rem;
+}
+
+.preciototal{
+    align-items: end;
+}

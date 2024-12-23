@@ -324,14 +324,14 @@ function actualizarCarrito() {
                     <p>${producto.Nombre}</p>
                 </div>
                 <div class="col-md-2">
-                    <input id="caca" type="number" min="0" step="0.1" class="form-control" 
+                    <input id="caca" class="numero" type="number" min="0" step="0.1" class="form-control" 
                         value="${producto.peso}" onchange="cambiarPeso(${index}, this.value)">
                 </div>
                 <div class="col-md-2">
                     <p>$${subtotal.toFixed(2)}</p>
                 </div>
                 <div class="col-md-2">
-                    <button class="btn btn-danger btn-sm" onclick="eliminarDelCarrito(${index})">Eliminar</button>
+                    <button class="botones" onclick="eliminarDelCarrito(${index})">Eliminar</button>
                 </div>
             </div>
         `;
@@ -340,7 +340,7 @@ function actualizarCarrito() {
     });
 
     carritoDiv.innerHTML += `
-        <div class="row mt-3">
+        <div class="row mt-3 preciototal">
             <div class="col-md-6"><strong>Total:</strong></div>
             <div class="col-md-6 text-end"><strong>$${total.toFixed(2)}</strong></div>
         </div>
