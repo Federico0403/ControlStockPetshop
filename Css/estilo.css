@@ -196,6 +196,53 @@ input[type="checkbox"] {
     right: 10px;             /* Mueve el formulario hacia la pantalla */
 }
 
+#formularioAgregarProducto {
+    height: 35vh; /* Máximo 45% de la altura del viewport */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+.form-row {
+    display: flex;
+    gap: 10px; /* Espaciado entre columnas */
+}
+
+.form-group {
+    flex: 1; /* Asegura que los campos tengan el mismo tamaño */
+    display: flex;
+    flex-direction: column;
+}
+
+textarea.form-control {
+    resize: none; /* Evita que el usuario cambie el tamaño del cuadro */
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.botones {
+    padding: 10px 20px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #007bff;
+}
+
+.botones:hover {
+    background-color: #0056b3;
+}
+
+
+
 /* Botones dentro de los formularios */
 .formularioAgregar .btn {
     margin-top: 10px;        /* Espaciado entre botones */
@@ -205,26 +252,57 @@ input[type="checkbox"] {
 /* Estilo base para el formulario de Modificar */
 .formularioModificarr {
     position: fixed;          /* Fija el formulario en un lugar específico */
-    top: 10%;                 /* Margen desde la parte superior */
-    right: -400px;            /* Inicialmente fuera de la pantalla */
-    width: 350px;             /* Ancho fijo del formulario */
+    top: 54vh;                 /* Margen desde la parte superior */
+    left: 0.5vw;            /* Inicialmente fuera de la pantalla */
+    width: 28vw;             /* Igual que el formulario "Agregar" */
+    height: 35vh;
+    border-radius: 30px;
     background-color: #fff;   /* Fondo blanco */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para resaltar */
-    border-radius: 8px;       /* Bordes redondeados */
+    border-radius: 10px;      /* Bordes redondeados */
     padding: 20px;            /* Espaciado interno */
     box-sizing: border-box;   /* Incluye padding en el tamaño total */
-    z-index: 1000;            /* Asegura que esté sobre otros elementos */
-    transition: right 0.3s ease; /* Animación suave para mostrar/ocultar */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para profundidad */
+    z-index: 3;
+    display: none;            /* Oculto inicialmente */
+    overflow-y: auto;         /* Maneja desbordamientos verticales */
+    transition: transform 0.3s ease; /* Animación suave al mostrarse */
 }
 
-/* Cuando el formulario está visible */
 #formularioModificar[style*="display: block;"] {
-    right: 10px;             /* Mueve el formulario hacia la pantalla */
+    display: flex;            /* Hace que el formulario sea visible */
+    flex-direction: column;   /* Elementos apilados en columna */
+    justify-content: space-between;
 }
 
-/* Botones dentro del formulario de Modificar */
-.formularioModificarr .btn {
-    margin-top: 10px;        /* Espaciado entre botones */
+.formularioModificarr .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;      /* Espaciado entre campos */
+}
+
+textarea.form-control {
+    resize: none;             /* Evita redimensionar el cuadro */
+    height: auto;             /* Ajusta dinámicamente el tamaño */
+}
+
+
+
+.formularioModificarr::-webkit-scrollbar {
+    width: 8px;               /* Ancho del scroll */
+}
+
+.formularioModificarr::-webkit-scrollbar-thumb {
+    background: #378a00;      /* Color del scroll */
+    border-radius: 4px;       /* Bordes redondeados del scroll */
+}
+
+.formularioModificarr::-webkit-scrollbar-thumb:hover {
+    background: #378a00;      /* Color del scroll al pasar el cursor */
+}
+
+.formularioModificarr::-webkit-scrollbar-track {
+    background: #f1f1f1;      /* Color de fondo del track */
+    border-radius: 4px;       /* Bordes redondeados del track */
 }
 
 

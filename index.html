@@ -32,34 +32,40 @@
       </div>
     </div>
   </nav>
-
   <div id="formularioAgregarProducto" class="formularioAgregar">
     <h3>Agregar Producto</h3>
     <form id="formAgregarProducto">
-        <div class="form-group">
-            <label for="nombreProducto">Nombre</label>
-            <input type="text" id="nombreProducto" class="form-control" required>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="nombreProducto">Nombre</label>
+                <input type="text" id="nombreProducto" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="marcaProducto">Marca</label>
+                <input type="text" id="marcaProducto" class="form-control" required>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="marcaProducto">Marca</label>
-            <input type="text" id="marcaProducto" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label for="tipoProducto">Tipo</label>
-            <input type="text" id="tipoProducto" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label for="precioProducto">Precio</label>
-            <input type="number" id="precioProducto" class="form-control" required>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="precioProducto">Precio</label>
+                <input type="number" id="precioProducto" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="tipoProducto">Tipo</label>
+                <input type="text" id="tipoProducto" class="form-control" required>
+            </div>
         </div>
         <div class="form-group">
             <label for="descripcionProducto">Descripción</label>
-            <input type="text" id="descripcionProducto" class="form-control" required>
+            <textarea id="descripcionProducto" class="form-control" rows="3" required></textarea>
         </div>
-        <button type="submit" class="botones">Guardar</button>
-        <button type="button" id="cancelarAgregar" class="botones">Finalizar</button>
+        <div class="form-buttons">
+            <button type="submit" class="botones">Guardar</button>
+            <button type="button" id="cancelarAgregar" class="botones">Finalizar</button>
+        </div>
     </form>
 </div>
+
 
 
 <!-- Formulario para modificar producto (oculto inicialmente) -->
@@ -87,8 +93,8 @@
           <label for="modificar_descripcionProducto">Descripción</label>
           <input type="text" id="modificar_descripcionProducto" class="form-control">
       </div>
-      <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-      <button type="button" id="cancelarModificar" class="btn btn-secondary">Cancelar</button>
+      <button type="submit" class="botones">Guardar Cambios</button>
+      <button type="button" id="cancelarModificar" class="botones">Cancelar</button>
   </form>
 </div>
 
