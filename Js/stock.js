@@ -274,9 +274,12 @@ function showProductos() {
 // Arreglo para almacenar los productos en el carrito
 let carrito = []; 
 function añadirAlCarrito(idProducto) {
-    const productoSeleccionado = productos.find(producto => producto.IDProducto === idProducto);
+    console.log('Buscando producto con ID:', idProducto); // Verifica el valor que estás buscando
+    const productoSeleccionado = productos.find(producto => String(producto.IDProducto) === String(idProducto));
 
+    
     if (!productoSeleccionado) {
+        console.log('Producto no encontrado:', idProducto); // Para depurar si no se encuentra el producto
         alert("No encontrado"); // Cambié el mensaje a "No encontrado" para mayor claridad.
         return;
     }
@@ -294,6 +297,7 @@ function añadirAlCarrito(idProducto) {
 
     actualizarCarrito();
 }
+
 
 
 // Función para actualizar el carrito y mostrarlo
