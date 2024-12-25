@@ -250,7 +250,7 @@ function showProductos() {
         let html = `
             <div class="row mb-3 contenedor-productos">
                 <div class="col-md-2 productos imagen">
-                    <img src="${producto.Imagen || 'img/logo.png'}" alt="${producto.Nombre}" class="img-fluid">
+                    <img src="${producto.imagen || 'img/logo.png'}" alt="${producto.Nombre}" class="img-fluid">
                 </div>
                 <div class="col-md-7 productos detalles">
                     <div class="titulo">${producto.Nombre || 'Nombre no disponible'}</div>
