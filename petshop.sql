@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-12-2024 a las 03:52:55
+-- Tiempo de generación: 26-12-2024 a las 15:05:54
 -- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.0.30
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -34,7 +34,7 @@ CREATE TABLE `productos` (
   `Tipo` varchar(250) NOT NULL,
   `Precio` int(11) NOT NULL,
   `Descripcion` varchar(500) NOT NULL,
-  `imagen` varchar(50) NOT NULL
+  `imagen` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -42,39 +42,39 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`IDProducto`, `Nombre`, `Marca`, `Tipo`, `Precio`, `Descripcion`, `imagen`) VALUES
-(37, 'Perro x kilo', 'Agility', 'Comida', 2600, 'x% De proteinas ', 'img/fond.jpg'),
-(38, 'Perro Bolsa', 'Agility', 'Comida', 4800, 'x% De proteinas', ''),
-(39, 'Urinary Gato', 'Agility', 'comida', 5400, '30% de Proteina', ''),
-(40, 'Urinary Gato', 'Agility', 'comida', 54000, '30% de Proteina', ''),
-(41, 'Kitten', 'Agility', 'comida', 5200, '34% de Proteina', ''),
-(42, 'Gato Por kilo', 'Agility', 'comida', 5100, '30% de Proteina', ''),
-(43, 'Gato Bolsa', 'Agility', 'Bolsa', 50000, '30% de Proteina', ''),
-(44, 'Holistic Food Bolsa', 'Greenline', 'comida', 44500, '32% de Proteina', ''),
-(45, 'Holistic Food Kilo', 'Greenline', 'comida', 3400, '32% de Proteina', ''),
-(46, 'Ocean Bolsa', 'Cat Chow', 'comida', 64000, 'x% De proteinas', ''),
-(47, 'Pescado Bolsa', 'Cat Chow', 'comida', 64000, 'x%', ''),
-(48, 'Gatitos Bolsa 15kg', 'Cat Chow', 'comida', 67000, '36% De proteinas', ''),
-(49, 'Gatitos 8kg', 'Cat Chow', 'comida', 31000, 'x%', ''),
-(50, 'Gatitos por kilo', 'Cat Chow', 'comida', 4800, 'x% De proteinas', ''),
-(51, 'Ocean', 'Cat Chow', 'comida', 4800, 'x% De proteinas', ''),
-(52, 'Cordero medium bolsa 15kg', 'Old prince', 'comida', 67000, 'x% De proteinas', ''),
-(53, 'Cordero medium kilo', 'Old prince', 'comida', 4600, 'x% De proteinas', ''),
-(54, 'Small 15kg', 'Old prince', 'comida', 67000, 'x% De proteinas', ''),
-(55, 'Small 1kg', 'Old prince', 'comida', 4600, 'x% De proteinas', ''),
-(56, 'Gato Equilibrium Complete', 'Old prince', 'comida', 5200, 'x% De proteinas', ''),
-(57, 'Gato Bolsa', 'Old prince', 'comida', 36000, 'x% De proteinas', ''),
-(58, 'Adulto Bolsa 20kg', 'Performance', 'comida', 68000, 'x% De proteinas', ''),
-(59, 'Adulto por kilo', 'Performance', 'comida', 4400, 'x% De proteinas', ''),
-(60, 'Gato Bolsa 7,5 kg ', 'Performance', 'comida', 37000, 'x% De proteinas', ''),
-(61, 'Gato Por kilo', 'Performance', 'comida', 6800, 'x% De proteinas', ''),
-(62, 'Perro Bolsa 20kg', 'Valiant', 'comida', 22600, 'x% De proteinas', ''),
-(63, 'Perro por kilo', 'Valiant', 'comida', 1200, 'x% De proteinas', ''),
+(37, 'Perro x kilo', 'Agility', 'Comida', 2600, 'x% De proteinas', 'img/productos/AgilityPerroBolsa.jpg'),
+(38, 'Perro Bolsa', 'Agility', 'Comida', 48000, 'x% De proteinas', 'img/productos/AgilityPerroBolsa.jpg'),
+(39, 'Urinary Gato', 'Agility', 'comida', 5400, '30% de Proteina', 'img/productos/UrinaryGatos.jpg'),
+(40, 'Urinary Gato', 'Agility', 'comida', 54000, '30% de Proteina', 'img/productos/UrinaryGatos.jpg'),
+(41, 'Kitten', 'Agility', 'comida', 5200, '34% de Proteina', 'img/productos/AgilityKitten.jpg'),
+(42, 'Gato Por kilo', 'Agility', 'comida', 5100, '30% de Proteina', 'img/productos/AgilityGato.jpg'),
+(43, 'Gato Bolsa', 'Agility', 'Bolsa', 50000, '30% de Proteina', 'img/productos/AgilityGato.jpg'),
+(44, 'Holistic Food Bolsa', 'Greenline', 'comida', 44500, '32% de Proteina', 'img/productos/HoslisticFood.jpg'),
+(45, 'Holistic Food Kilo', 'Greenline', 'comida', 3400, '32% de Proteina', 'img/productos/HoslisticFood.jpg'),
+(46, 'Ocean Bolsa', 'Cat Chow', 'comida', 64000, 'x% De proteinas', 'img/productos/CatChowOcean.jpg'),
+(47, 'Pescado Bolsa', 'Cat Chow', 'comida', 64000, 'x%', 'img/productos/CatChowOcean.jpg'),
+(48, 'Gatitos Bolsa 15kg', 'Cat Chow', 'comida', 67000, '36% De proteinas', 'img/productos/CatChowGatitos.jpg'),
+(49, 'Gatitos 8kg', 'Cat Chow', 'comida', 31000, 'x%', 'img/productos/CatChowGatitos.jpg'),
+(50, 'Gatitos por kilo', 'Cat Chow', 'comida', 4800, 'x% De proteinas', 'img/productos/CatChowGatitos.jpg'),
+(51, 'Ocean', 'Cat Chow', 'comida', 4800, 'x% De proteinas', 'img/productos/CatChowOcean.jpg'),
+(52, 'Cordero medium bolsa 15kg', 'Old prince', 'comida', 67000, 'x% De proteinas', 'img/productos/OldPrinceCorderoMedium.jpg'),
+(53, 'Cordero medium kilo', 'Old prince', 'comida', 4600, 'x% De proteinas', 'img/productos/OldPrinceCorderoMedium.jpg'),
+(54, 'Small 15kg', 'Old prince', 'comida', 67000, 'x% De proteinas', 'img/productos/OldPrinceSmall.jpg'),
+(55, 'Small 1kg', 'Old prince', 'comida', 4600, 'x% De proteinas', 'img/productos/OldPrinceSmall.jpg'),
+(56, 'Gato Equilibrium Complete', 'Old prince', 'comida', 5200, 'x% De proteinas', 'img/productos/OldPrinceGato.jpg'),
+(57, 'Gato Bolsa', 'Old prince', 'comida', 36000, 'x% De proteinas', 'img/productos/OldPrinceGato.jpg'),
+(58, 'Adulto Bolsa 20kg', 'Performance', 'comida', 68000, 'x% De proteinas', 'img/productos/PerformancePerro.jpg'),
+(59, 'Adulto por kilo', 'Performance', 'comida', 4400, 'x% De proteinas', 'img/productos/PerformancePerro.jpg'),
+(60, 'Gato Bolsa 7,5 kg ', 'Performance', 'comida', 37000, 'x% De proteinas', 'img/productos/PerformanceGato.jpg'),
+(61, 'Gato Por kilo', 'Performance', 'comida', 6800, 'x% De proteinas', 'img/productos/PerformanceGato.jpg'),
+(62, 'Perro Bolsa 20kg', 'Valiant', 'comida', 22600, 'x% De proteinas', 'img/productos/ValiantPerro.jpg'),
+(63, 'Perro por kilo', 'Valiant', 'comida', 1200, 'x% De proteinas', 'img/productos/ValiantPerro.jpg'),
 (64, 'Premiun Gato 24kg', 'Vital Safety', 'comida', 70000, 'x% De proteinas', ''),
 (65, 'Premiun Gato por kg', 'Vital Safety', 'comida', 4200, 'x% De proteinas', ''),
 (66, 'Premiun Gato kilo', 'Vital Safety', 'comida', 4200, 'x% De proteinas', ''),
 (67, 'Premiun Perro kilo', 'Vital Safety', 'comida', 2800, 'x% De proteinas', ''),
-(68, 'Cachorros Bolsa 15kg', 'Nutribon', 'comida', 24000, 'x% De proteinas', ''),
-(69, 'Cachorros por kg', 'Nutribon', 'comida', 1700, 'x% De proteinas', ''),
+(68, 'Cachorros Bolsa 15kg', 'Nutribon', 'comida', 24000, 'x% De proteinas', 'img/productos/NutribonCachorro.jpg'),
+(69, 'Cachorros por kg', 'Nutribon', 'comida', 1700, 'x% De proteinas', 'img/productos/NutribonCachorro.jpg'),
 (70, 'Adulto Bolsa 15kg', 'Nutribon', 'comida', 18800, 'x% De proteinas', ''),
 (71, 'Adulto por kg', 'Nutribon', 'comida', 1400, 'x% De proteinas', ''),
 (72, 'Raza pequeña por kg', 'Nutribon', 'comida', 1700, 'x% De proteinas', ''),
@@ -90,7 +90,6 @@ INSERT INTO `productos` (`IDProducto`, `Nombre`, `Marca`, `Tipo`, `Precio`, `Des
 (82, 'Plus perro por kg', 'Estampa', 'comida', 2300, 'x% De proteinas', ''),
 (83, 'Plus raza pequeña bolsa 8kg', 'Estampa', 'comida', 19000, 'x% De proteinas', ''),
 (84, 'Plus raza pequeña bolsa 15kg', 'Estampa', 'comida', 25500, 'x% De proteinas', ''),
-(87, 'ss', 'Greenline', 'Higieness', 2313, '32443', ''),
 (88, 'Raza Pequeña', 'Estampa', 'comida', 2300, 'x% De proteinas', ''),
 (89, 'Gato bolsa 15kg', 'Estampa', 'comida', 31000, 'x% De proteinas', ''),
 (90, 'Gato Por kg', 'Estampa', 'comida', 2600, 'x% De proteinas', ''),
@@ -144,9 +143,9 @@ INSERT INTO `productos` (`IDProducto`, `Nombre`, `Marca`, `Tipo`, `Precio`, `Des
 (138, 'Conejo Ganave Por kg ', 'Productos Sin Marca', 'Utilidad', 1000, 'x% De proteinas', ''),
 (139, 'Maderitas/Pellets Por kg', 'Productos Sin Marca', 'Utilidad', 800, 'x', ''),
 (140, 'Maderitas/Pellets Por Bolsa', 'Productos Sin Marca', 'Utilidad', 8500, 'x', ''),
-(141, 'Latas', 'Agility', 'comida', 3200, '99% De proteinas Animal', ''),
+(141, 'Latas', 'Agility', 'comida', 3200, '99% De proteinas Animal', 'img/productos/AgilityLatas.jpg'),
 (142, 'Bocaditos Naturales', 'Auki', 'comida', 1600, 'x% De proteinas', ''),
-(143, 'Pouch', 'Cat Chow', 'comida', 1400, 'x% De proteinas', ''),
+(143, 'Pouch', 'Cat Chow', 'comida', 1400, 'x% De proteinas', 'img/productos/CatChowPouch.jpg'),
 (144, 'Pouch', 'Felix', 'comida', 1400, 'x% De proteinas', ''),
 (145, 'Pouch', 'Dog Chow', 'comida', 1400, 'x% De proteinas', ''),
 (146, 'Pouch', 'Whiskas', 'comida', 900, 'x% De proteinas', ''),
@@ -157,36 +156,9 @@ INSERT INTO `productos` (`IDProducto`, `Nombre`, `Marca`, `Tipo`, `Precio`, `Des
 (151, 'Shampoo', 'Higiene', 'Higiene', 4500, 'x', ''),
 (152, 'Acondicionador', 'Higiene', 'Higiene', 4500, 'x', ''),
 (153, 'Locion OssPret', 'Higiene', 'Higiene', 5500, 'x', ''),
-(154, 'Pino Pack Viruta', 'Productos Sin Marca', 'Utilidad', 1150, 'x', '');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `proveedor`
---
-
-CREATE TABLE `proveedor` (
-  `IDProveedor` int(11) NOT NULL,
-  `NombreProveedor` varchar(250) NOT NULL,
-  `Contacto` varchar(250) NOT NULL,
-  `Direccion` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `proveedor`
---
-
-INSERT INTO `proveedor` (`IDProveedor`, `NombreProveedor`, `Contacto`, `Direccion`) VALUES
-(1, 'Proveedor 1', 'Contacto 1', 'Direccion 1'),
-(2, 'Proveedor 2', 'Contacto 2', 'Direccion 2'),
-(4, 'Proveedor 4', 'Contacto 4', 'Direccion 4'),
-(5, 'Proveedor 5', 'Contacto 5', 'Direccion 5'),
-(6, 'Proveedor 6', 'Contacto 6', 'Direccion 6'),
-(7, 'Proveedor 7', 'Contacto 7', 'Direccion 7'),
-(8, 'Proveedor 8', 'Contacto 8', 'Direccion 8'),
-(9, 'Proveedor 9', 'Contacto 9', 'Direccion 9'),
-(10, 'Proveedor 10', 'Contacto 10', 'Direccion 10'),
-(11, 'Proveedor 1saaaaaasdasdasdsadsadasdsaaaa', 'Contacto 1', 'Direccion 1');
+(154, 'Pino Pack Viruta', 'Productos Sin Marca', 'Utilidad', 1150, 'x', ''),
+(155, 'asd', 'Alta Gama', '22', 22, '22', ''),
+(156, 'Puppy', 'Old prince', 'Comida', 4600, 'x% proteinas', 'img/productos/OldPrincePuppy.jpg');
 
 --
 -- Índices para tablas volcadas
@@ -199,12 +171,6 @@ ALTER TABLE `productos`
   ADD PRIMARY KEY (`IDProducto`);
 
 --
--- Indices de la tabla `proveedor`
---
-ALTER TABLE `proveedor`
-  ADD PRIMARY KEY (`IDProveedor`);
-
---
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -212,13 +178,7 @@ ALTER TABLE `proveedor`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `IDProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=159;
-
---
--- AUTO_INCREMENT de la tabla `proveedor`
---
-ALTER TABLE `proveedor`
-  MODIFY `IDProveedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `IDProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=157;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
