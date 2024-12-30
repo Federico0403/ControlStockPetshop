@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-12-2024 a las 16:09:06
+-- Tiempo de generación: 30-12-2024 a las 13:55:07
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -105,89 +105,60 @@ INSERT INTO `productos` (`IDProducto`, `Nombre`, `Marca`, `Tipo`, `Precio`, `Des
 (100, 'Gato Por kg', 'Excellent', 'comida', 6800, 'x% De proteinas', 'img/productos/ExcellentGato.jpg'),
 (101, 'Gato Kitten Bolsa 7.5kg', 'Excellent', 'comida', 54000, 'x% De proteinas', 'img/productos/ExcellentKitten.jpg'),
 (102, 'Gato Kitten Por Kg', 'Excellent', 'comida', 7600, 'x% De proteinas', 'img/productos/ExcellentKitten.jpg'),
-(103, 'Perro Por Bolsa 15kg', 'Excellent', 'comida', 55000, 'x% De proteinas', ''),
-(104, 'Perro por kg', 'Excellent', 'comida', 4200, 'x% De proteinas', ''),
-(105, 'Perro Adulto Small Por Bolsa 15kg', 'Excellent', 'comida', 50500, 'x% De proteinas', ''),
-(106, 'Perro Adulto Small Por kg', 'Excellent', 'comida', 4200, 'x% De proteinas', ''),
-(107, 'Urinary Gato Por kg', 'Excellent', 'comida', 7600, 'x% De proteinas', ''),
-(108, 'Urinary Gato Por Bolsa 7.5', 'Excellent', 'comida', 52500, 'x% De proteinas', ''),
-(109, 'Mini Adulto Por kg', 'Royal canin', 'comida', 55500, 'x% De proteinas', ''),
-(110, 'Mini Adulto Por kg', 'Royal canin', 'comida', 7400, 'x% De proteinas', ''),
-(111, 'Mini Puppy Por Bolsa 15kg', 'Royal canin', 'comida', 79500, 'x% De proteinas', ''),
-(112, 'Mini Puppy Por kg', 'Royal canin', 'comida', 6400, 'x% De proteinas', ''),
-(113, 'Pescado y Salmon Bolsa 15kg', 'Gati', 'comida', 39500, 'x% De proteinas', ''),
-(114, 'Pescado y Salmon Por kg', 'Gati', 'comida', 3000, 'x% De proteinas', ''),
-(115, 'Pescado Por Bolsa 15kg', 'Sabrositos', 'comida', 46000, 'x% De proteinas', ''),
-(116, 'Mix Carne Por Bolsa 15kg', 'Sabrositos', 'comida', 46000, 'x% De proteinas', ''),
-(117, 'Pescado Por kg', 'Sabrositos', 'comida', 2400, 'x% De proteinas', ''),
-(118, 'Mix Carne Por kg', 'Sabrositos', 'comida', 2400, 'x% De proteinas', ''),
-(119, 'Bebe Por Bolsa', 'Whiskas', 'comida', 39500, 'x% De proteinas', ''),
-(120, 'Bebe Por kg', 'Whiskas', 'comida', 4000, 'x% De proteinas', ''),
-(121, 'Pollo Por Bolsa 10kg ', 'Whiskas', 'comida', 41000, 'x% De proteinas', ''),
-(122, 'Pescado Por Bolsa 10kg', 'Whiskas', 'comida', 41000, 'x% De proteinas', ''),
-(123, 'Pollo Por kg', 'Whiskas', 'comida', 4200, 'x% De proteinas', ''),
-(124, 'Pescado Por kg', 'Whiskas', 'comida', 4200, 'x% De proteinas', ''),
-(125, 'Hepatic Perro 10kg', 'Royal canin', 'comida', 70000, 'x% De proteinas', ''),
-(126, 'Hepatic Perro Por Bolsa', 'Royal canin', 'comida', 7100, 'x% De proteinas', ''),
-(127, 'Diabetic Por Bolsa 10kg', 'Royal canin', 'comida', 73000, 'x% De proteinas', ''),
-(128, 'Diabetic Por kg', 'Royal canin', 'comida', 7400, 'x% De proteinas', ''),
-(129, 'Satiety Perro Por Bolsa 15kg', 'Royal canin', 'comida', 83000, 'x% De proteinas', ''),
-(130, 'Satiety Perro Por kg', 'Royal canin', 'comida', 5600, 'x% De proteinas', ''),
-(131, 'Max Adult Por Bolsa 15kg', 'Royal canin', 'comida', 71000, 'x% De proteinas', ''),
-(132, 'Maxi Adult Por Bolsa 15kg', 'Royal canin', 'comida', 6200, 'x% De proteinas', ''),
-(133, 'Medium Adult Por Bolsa 15kg', 'Royal canin', 'comida', 79000, 'x% De proteinas', ''),
-(134, 'Medium Adult Por kg', 'Royal canin', 'comida', 6200, 'x% De proteinas', ''),
-(135, 'Bull Dog Frances Adulto Por Bolsa 7.5 kg', 'Royal canin', 'comida', 50500, 'x% De proteinas', ''),
-(136, 'Bull Dog Frances Adulto Por kg', 'Royal canin', 'comida', 6700, 'x% De proteinas', ''),
-(137, 'Cat Por kg', 'Super Premiun', 'comida', 7600, 'x% De proteinas', ''),
+(103, 'Perro Por Bolsa 15kg', 'Excellent', 'comida', 55000, 'x% De proteinas', 'img/productos/ExcellentMordidaGrande.jpg'),
+(104, 'Perro por kg', 'Excellent', 'comida', 4200, 'x% De proteinas', 'img/productos/ExcellentMordidaGrande.jpg'),
+(105, 'Perro Adulto Small Por Bolsa 15kg', 'Excellent', 'comida', 50500, 'x% De proteinas', 'img/productos/ExcellentPerroMordidaChica.jpg'),
+(106, 'Perro Adulto Small Por kg', 'Excellent', 'comida', 4200, 'x% De proteinas', 'img/productos/ExcellentPerroMordidaChica.jpg'),
+(107, 'Urinary Gato Por kg', 'Excellent', 'comida', 7600, 'x% De proteinas', 'img/productos/ExcellentUrinaryGato.jpg'),
+(108, 'Urinary Gato Por Bolsa 7.5', 'Excellent', 'comida', 52500, 'x% De proteinas', 'img/productos/ExcellentUrinaryGato.jpg'),
+(109, 'Mini Adulto Por kg', 'Royal canin', 'comida', 55500, 'x% De proteinas', 'img/productos/RoyalCaninMiniAdulto.jpg'),
+(110, 'Mini Adulto Por kg', 'Royal canin', 'comida', 7400, 'x% De proteinas', 'img/productos/RoyalCaninMiniAdulto.jpg'),
+(111, 'Mini Puppy Por Bolsa 15kg', 'Royal canin', 'comida', 79500, 'x% De proteinas', 'img/productos/RoyalCaninMiniPuppy.jpg'),
+(112, 'Mini Puppy Por kg', 'Royal canin', 'comida', 6400, 'x% De proteinas', 'img/productos/RoyalCaninMiniPuppy.jpg'),
+(113, 'Pescado y Salmon Bolsa 15kg', 'Gati', 'comida', 39500, 'x% De proteinas', 'img/productos/GatiPescadoSalmon.jpg'),
+(114, 'Pescado y Salmon Por kg', 'Gati', 'comida', 3000, 'x% De proteinas', 'img/productos/GatiPescadoSalmon.jpg'),
+(115, 'Pescado Por Bolsa 15kg', 'Sabrositos', 'comida', 46000, 'x% De proteinas', 'img/productos/SabrositosPescados.jpg'),
+(116, 'Mix Carne Por Bolsa 15kg', 'Sabrositos', 'comida', 46000, 'x% De proteinas', 'img/productos/SabrositosMixCarne.jpg'),
+(117, 'Pescado Por kg', 'Sabrositos', 'comida', 2400, 'x% De proteinas', 'img/productos/SabrositosPescados.jpg'),
+(118, 'Mix Carne Por kg', 'Sabrositos', 'comida', 2400, 'x% De proteinas', 'img/productos/SabrositosMixCarne.jpg'),
+(119, 'Bebe Por Bolsa', 'Whiskas', 'comida', 39500, 'x% De proteinas', 'img/productos/WhiskasMini.jpg'),
+(120, 'Bebe Por kg', 'Whiskas', 'comida', 4000, 'x% De proteinas', 'img/productos/WhiskasMini.jpg'),
+(121, 'Pollo Por Bolsa 10kg ', 'Whiskas', 'comida', 41000, 'x% De proteinas', 'img/productos/WhiskasPollo.jpg'),
+(122, 'Pescado Por Bolsa 10kg', 'Whiskas', 'comida', 41000, 'x% De proteinas', 'img/productos/WhiskasPescado.jpg'),
+(123, 'Pollo Por kg', 'Whiskas', 'comida', 4200, 'x% De proteinas', 'img/productos/WhiskasPollo.jpg'),
+(124, 'Pescado Por kg', 'Whiskas', 'comida', 4200, 'x% De proteinas', 'img/productos/WhiskasPescado.jpg'),
+(125, 'Hepatic Perro 10kg', 'Royal canin', 'comida', 70000, 'x% De proteinas', 'img/productos/RoyalCaninHepaticPerro.jpg'),
+(126, 'Hepatic Perro Por Bolsa', 'Royal canin', 'comida', 7100, 'x% De proteinas', 'img/productos/RoyalCaninHepaticPerro.jpg'),
+(127, 'Diabetic Por Bolsa 10kg', 'Royal canin', 'comida', 73000, 'x% De proteinas', 'img/productos/RoyalCaninDiabetic.jpg'),
+(128, 'Diabetic Por kg', 'Royal canin', 'comida', 7400, 'x% De proteinas', 'img/productos/RoyalCaninDiabetic.jpg'),
+(129, 'Satiety Perro Por Bolsa 15kg', 'Royal canin', 'comida', 83000, 'x% De proteinas', 'img/productos/RoyalCaninSa.jpg'),
+(130, 'Satiety Perro Por kg', 'Royal canin', 'comida', 5600, 'x% De proteinas', 'img/productos/RoyalCaninSa.jpg'),
+(131, 'Max Adult Por Bolsa 15kg', 'Royal canin', 'comida', 71000, 'x% De proteinas', 'img/productos/RoyalCaninMax.jpg'),
+(132, 'Maxi Adult Por kg', 'Royal canin', 'comida', 6200, 'x% De proteinas', 'img/productos/RoyalCaninMax.jpg'),
+(133, 'Medium Adult Por Bolsa 15kg', 'Royal canin', 'comida', 79000, 'x% De proteinas', 'img/productos/RoyalCaninMe.jpg'),
+(134, 'Medium Adult Por kg', 'Royal canin', 'comida', 6200, 'x% De proteinas', 'img/productos/RoyalCaninMe.jpg'),
+(135, 'Bull Dog Frances Adulto Por Bolsa 7.5 kg', 'Royal canin', 'comida', 50500, 'x% De proteinas', 'img/productos/RoyalCaninBu.jpg'),
+(136, 'Bull Dog Frances Adulto Por kg', 'Royal canin', 'comida', 6700, 'x% De proteinas', 'img/productos/RoyalCaninBu.jpg'),
+(137, 'Cat Por kg', 'Super Premiun', 'comida', 7600, 'x% De proteinas', 'img/productos/SuperPremiunCat.jpg'),
 (138, 'Conejo Ganave Por kg ', 'Productos Sin Marca', 'Utilidad', 1000, 'x% De proteinas', ''),
 (139, 'Maderitas/Pellets Por kg', 'Productos Sin Marca', 'Utilidad', 800, 'x', ''),
 (140, 'Maderitas/Pellets Por Bolsa', 'Productos Sin Marca', 'Utilidad', 8500, 'x', ''),
 (141, 'Latas', 'Agility', 'comida', 3200, '99% De proteinas Animal', 'img/productos/AgilityLatas.jpg'),
-(142, 'Bocaditos Naturales', 'Auki', 'comida', 1600, 'x% De proteinas', ''),
+(142, 'Bocaditos Naturales', 'Auki', 'comida', 1600, 'x% De proteinas', 'img/productos/Auki.jpg'),
 (143, 'Pouch', 'Cat Chow', 'comida', 1400, 'x% De proteinas', 'img/productos/CatChowPouch.jpg'),
-(144, 'Pouch', 'Felix', 'comida', 1400, 'x% De proteinas', ''),
-(145, 'Pouch', 'Dog Chow', 'comida', 1400, 'x% De proteinas', ''),
-(146, 'Pouch', 'Whiskas', 'comida', 900, 'x% De proteinas', ''),
-(147, 'Pouch', 'Pedigri', 'comida', 900, 'x% De proteinas', ''),
+(144, 'Pouch', 'Felix', 'comida', 1400, 'x% De proteinas', 'img/productos/FelixPouch.jpg'),
+(145, 'Pouch', 'Dog Chow', 'comida', 1400, 'x% De proteinas', 'img/productos/DogChowPouch.jpg'),
+(146, 'Pouch', 'Whiskas', 'comida', 900, 'x% De proteinas', 'img/productos/WhiskasPouch.jpg'),
+(147, 'Pouch', 'Pedigri', 'comida', 900, 'x% De proteinas', 'img/productos/PedigriPouch.jpg'),
 (148, 'Lavanda', 'Alta Gama', 'comida', 6700, 'x% De proteinas', ''),
 (149, 'Limon', 'Alta Gama', 'comida', 6700, 'x% De proteinas', ''),
-(150, 'Bolsa Negra jajajj', 'Alta Gama', 'comida', 6500, 'x% De proteinas', ''),
-(151, 'Shampoo', 'Higiene', 'Higiene', 4500, 'x', ''),
-(152, 'Acondicionador', 'Higiene', 'Higiene', 4500, 'x', ''),
-(153, 'Locion OssPret', 'Higiene', 'Higiene', 5500, 'x', ''),
+(150, 'Bolsa Negra jajajj', 'Alta Gama', 'comida', 6500, 'x% De proteinas', 'img/productos/AltaGamaBolsaNegra.jpg'),
+(151, 'Shampoo', 'Higiene', 'Higiene', 4500, 'x', 'img/productos/SampooOspret.jpg'),
+(152, 'Acondicionador', 'Higiene', 'Higiene', 4500, 'x', 'img/productos/AcondicionadorOs.jpg'),
+(153, 'Locion OssPret', 'Higiene', 'Higiene', 5500, 'x', 'img/productos/LocionOs.jpg'),
 (154, 'Pino Pack Viruta', 'Productos Sin Marca', 'Utilidad', 1150, 'x', ''),
 (155, 'asd', 'Alta Gama', '22', 22, '22', ''),
 (156, 'Puppy', 'Old prince', 'Comida', 4600, 'x% proteinas', 'img/productos/OldPrincePuppy.jpg');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `proveedor`
---
-
-CREATE TABLE `proveedor` (
-  `IDProveedor` int(11) NOT NULL,
-  `NombreProveedor` varchar(250) NOT NULL,
-  `Contacto` varchar(250) NOT NULL,
-  `Direccion` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `proveedor`
---
-
-INSERT INTO `proveedor` (`IDProveedor`, `NombreProveedor`, `Contacto`, `Direccion`) VALUES
-(1, 'Proveedor 1', 'Contacto 1', 'Direccion 1'),
-(2, 'Proveedor 2', 'Contacto 2', 'Direccion 2'),
-(4, 'Proveedor 4', 'Contacto 4', 'Direccion 4'),
-(5, 'Proveedor 5', 'Contacto 5', 'Direccion 5'),
-(6, 'Proveedor 6', 'Contacto 6', 'Direccion 6'),
-(7, 'Proveedor 7', 'Contacto 7', 'Direccion 7'),
-(8, 'Proveedor 8', 'Contacto 8', 'Direccion 8'),
-(9, 'Proveedor 9', 'Contacto 9', 'Direccion 9'),
-(10, 'Proveedor 10', 'Contacto 10', 'Direccion 10'),
-(11, 'Proveedor 1saaaaaasdasdasdsadsadasdsaaaa', 'Contacto 1', 'Direccion 1');
 
 --
 -- Índices para tablas volcadas
@@ -200,12 +171,6 @@ ALTER TABLE `productos`
   ADD PRIMARY KEY (`IDProducto`);
 
 --
--- Indices de la tabla `proveedor`
---
-ALTER TABLE `proveedor`
-  ADD PRIMARY KEY (`IDProveedor`);
-
---
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -214,12 +179,6 @@ ALTER TABLE `proveedor`
 --
 ALTER TABLE `productos`
   MODIFY `IDProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=157;
-
---
--- AUTO_INCREMENT de la tabla `proveedor`
---
-ALTER TABLE `proveedor`
-  MODIFY `IDProveedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
