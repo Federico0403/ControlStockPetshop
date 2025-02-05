@@ -1,0 +1,20 @@
+{
+  "name": "controlstockpetshop",
+  "version": "1.0.0",
+  "description": "Esta tabla almacena la información de los productos disponibles en la petshop.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Federico0403/ControlStockPetshop.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Federico0403/ControlStockPetshop/issues"
+  },
+  "homepage": "https://github.com/Federico0403/ControlStockPetshop#readme"
+}

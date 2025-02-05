@@ -1,4 +1,7 @@
 "use strict";
+// con esto puedo importar funciones de otros archivos a este 
+// importante que tener este archivo como type module
+// importante que la funcion que quiero importar, tenga el export
 
 const BASE_PATH = window.location.pathname.split("/").slice(0, -2).join("/"); // Ajusta el nivel según la estructura
 const BASE_URL = `${window.location.origin}${BASE_PATH}/ControlStockPetshop/api/`;
@@ -147,6 +150,7 @@ function showMarcas(marcasSeleccionadas = []) {
     renderFilteredMarcas("", marcasOrdenadas, marcasSeleccionadas);
 }
 
+
 function renderFilteredMarcas(searchTerm, marcasOrdenadas, marcasSeleccionadas) {
     const marcasContainer = document.getElementById('marcasContainer');
     marcasContainer.innerHTML = ""; // Limpiar contenido previo
@@ -242,7 +246,6 @@ async function eliminarProducto(idProducto) {
 
 // Luego el código para mostrar los productos
 function showProductos() {
-    
     let div = document.getElementById("contenedorMostrar");
     div.innerHTML = "";
 
@@ -258,9 +261,9 @@ function showProductos() {
                     <p class="descripcion">${producto.Descripcion || 'Descripción no disponible'}</p>
                 </div>
                 <div class="col-md-3 acciones">
-                    <button class="botones" onclick="modificarProducto(${producto.IDProducto})">Modificar</button>
-                    <button class="botones" onclick="eliminarProducto(${producto.IDProducto})">Eliminar</button>
-                    <button class="botones" onclick="añadirAlCarrito(${producto.IDProducto})">Añadir al carrito</button>  <!-- Botón Añadir -->
+                    <button class="botones modificar" data-id="${producto.IDProducto}">Modificar</button>
+                    <button class="botones eliminar" data-id="${producto.IDProducto}">Eliminar</button>
+                    <button class="botones agregar-carrito" data-id="${producto.IDProducto}">Añadir al carrito</button> 
                 </div>
             </div>
         `;
@@ -268,6 +271,63 @@ function showProductos() {
     });
 
     div.innerHTML += `<p class="mt-3 text-center"><small>Mostrando ${productos.length} Productos</small></p>`;
+
+    // 🔹 Asignar eventos después de generar el HTML
+    document.querySelectorAll(".modificar").forEach(boton => {
+        boton.addEventListener("click", (event) => {
+            const idProducto = event.target.dataset.id;
+            modificarProducto(idProducto);
+        });
+    });
+
+    document.querySelectorAll(".eliminar").forEach(boton => {
+        boton.addEventListener("click", (event) => {
+            const idProducto = event.target.dataset.id;
+            eliminarProducto(idProducto);
+        });
+    });
+
+    document.querySelectorAll(".agregar-carrito").forEach(boton => {
+        boton.addEventListener("click", (event) => {
+            const idProducto = event.target.dataset.id;
+            añadirAlCarrito(idProducto);
+        });
+    });
+}
+
+
+function showProveedores() {
+    // Limpiar los filtros de marcas antes de mostrar los proveedores
+    let filtrosMarcaDiv = document.getElementById("filtrosMarca");
+    filtrosMarcaDiv.innerHTML = "";
+
+    let div = document.getElementById("contenedorMostrar");
+    div.innerHTML = "";
+
+    // Crear una fila para los proveedores
+    let proveedoresHTML = `<div class="">`;
+
+    proveedores.forEach(proveedor => {
+        proveedoresHTML += ` 
+        <div class="">
+            <div class='card'>
+                <div class='card-body'>
+                    <h5 class='card-title'>
+                        <a href='#' data-id='${proveedor.IDProveedor}' class='text-decoration-none titulo text-danger btnDetail'>${proveedor.NombreProveedor || 'Nombre no disponible'}</a>
+                    </h5>
+                    <p class='card-text'>Contacto: ${proveedor.Contacto || 'Contacto no disponible'}</p>
+                    <p class='card-text'>Dirección: ${proveedor.Direccion || 'Dirección no disponible'}</p>
+                </div>
+            </div>
+        </div>`;
+    });
+
+    proveedoresHTML += `</div>`;  // Cerrar la fila
+
+    div.innerHTML = proveedoresHTML;
+
+    // Mostrar la cantidad de proveedores
+    div.innerHTML += `<p class="mt-3 text-center"><small>Mostrando ${proveedores.length} Proveedores</small></p>`;
 }
 
 
@@ -308,15 +368,13 @@ function actualizarCarrito() {
     let total = 0;
 
     carrito.forEach((producto, index) => {
-        // Asegurarse de que Precio y peso sean números válidos
         const precio = parseFloat(producto.Precio);
         const peso = parseFloat(producto.peso);
 
-        // Si alguno no es un número válido, asignamos 0
+        // Validaciones
         if (isNaN(precio)) producto.Precio = 0;
-        if (isNaN(peso)) producto.peso = 1;  // Asignamos un peso por defecto de 1 si no es válido
+        if (isNaN(peso)) producto.peso = 1; 
 
-        // Calcular el subtotal
         const subtotal = producto.Precio * producto.peso;
         total += subtotal;
 
@@ -326,14 +384,14 @@ function actualizarCarrito() {
                     <p>${producto.Nombre}</p>
                 </div>
                 <div class="col-md-2">
-                    <input id="caca" class="numero" type="number" min="0" step="0.1" class="form-control" 
-                        value="${producto.peso}" onchange="cambiarPeso(${index}, this.value)">
+                    <input class="numero peso-input" type="number" min="0" step="0.1" 
+                        value="${producto.peso}" data-index="${index}">
                 </div>
                 <div class="col-md-2">
                     <p>$${subtotal.toFixed(2)}</p>
                 </div>
                 <div class="col-md-2">
-                    <button class="botones" onclick="eliminarDelCarrito(${index})">Eliminar</button>
+                    <button class="botones eliminar-carrito" data-index="${index}">Eliminar</button>
                 </div>
             </div>
         `;
@@ -347,6 +405,22 @@ function actualizarCarrito() {
             <div class="col-md-6 text-end "><strong>$${total.toFixed(2)}</strong></div>
         </div>
     `;
+
+    // 🔹 Agregar eventos dinámicamente
+    document.querySelectorAll(".peso-input").forEach(input => {
+        input.addEventListener("change", (event) => {
+            const index = event.target.dataset.index;
+            cambiarPeso(index, event.target.value);
+        });
+    });
+
+    document.querySelectorAll(".eliminar-carrito").forEach(boton => {
+        boton.addEventListener("click", (event) => {
+            const index = event.target.dataset.index;
+            eliminarDelCarrito(index);
+            actualizarCarrito(); // Vuelve a renderizar el carrito después de eliminar
+        });
+    });
 }
 
 
@@ -467,38 +541,6 @@ async function guardarModificaciones(idProducto) {
     }
 }
 
-function showProveedores() {
-    // Limpiar los filtros de marcas antes de mostrar los proveedores
-    let filtrosMarcaDiv = document.getElementById("filtrosMarca");
-    filtrosMarcaDiv.innerHTML = "";
 
-    let div = document.getElementById("contenedorMostrar");
-    div.innerHTML = "";
-
-    // Crear una fila para los proveedores
-    let proveedoresHTML = `<div class="">`;
-
-    proveedores.forEach(proveedor => {
-        proveedoresHTML += ` 
-        <div class="">
-            <div class='card'>
-                <div class='card-body'>
-                    <h5 class='card-title'>
-                        <a href='#' data-id='${proveedor.IDProveedor}' class='text-decoration-none titulo text-danger btnDetail'>${proveedor.NombreProveedor || 'Nombre no disponible'}</a>
-                    </h5>
-                    <p class='card-text'>Contacto: ${proveedor.Contacto || 'Contacto no disponible'}</p>
-                    <p class='card-text'>Dirección: ${proveedor.Direccion || 'Dirección no disponible'}</p>
-                </div>
-            </div>
-        </div>`;
-    });
-
-    proveedoresHTML += `</div>`;  // Cerrar la fila
-
-    div.innerHTML = proveedoresHTML;
-
-    // Mostrar la cantidad de proveedores
-    div.innerHTML += `<p class="mt-3 text-center"><small>Mostrando ${proveedores.length} Proveedores</small></p>`;
-}
 
 getAllProductos();
