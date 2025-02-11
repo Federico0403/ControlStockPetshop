@@ -188,6 +188,7 @@ input[type="checkbox"] {
     box-sizing: border-box;   /* Incluye padding en el tamaño total */
     z-index: 3;
     transition: right 0.3s ease; /* Animación suave para mostrar/ocultar */
+    height: 70vh;
 }
 
 /* Cuando el formulario está visible */
@@ -197,7 +198,7 @@ input[type="checkbox"] {
 }
 
 #formularioAgregarProducto {
-    height: 35vh; /* Máximo 45% de la altura del viewport */
+    height: 42vh; /* Máximo 45% de la altura del viewport */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -205,6 +206,7 @@ input[type="checkbox"] {
     box-sizing: border-box;
     border-radius: 8px;
     background-color: #fff;
+
 }
 
 .form-row {
@@ -579,7 +581,7 @@ textarea.form-control {
     left: 70.4vw;
     top: 3.3vh;
     width: 29vw;
-    height: 50vh;
+    height: 58vh;
     padding: 1vw;
     border-radius: 5px;
     border-bottom-left-radius: 30px;
@@ -668,4 +670,15 @@ textarea.form-control {
 
 .preciototal{
     align-items: end;
+}
+
+#BotonesCarrito{
+    position: absolute;
+    left: 1.7vw;
+    top: 49vh;
+    width: 27vw;
+    font-size: 2vw;
+    color: #000000;
+    border: solid 1px black;
+    border-radius: 30px;
 }

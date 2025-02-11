@@ -338,11 +338,6 @@ function añadirAlCarrito(idProducto) {
     const productoSeleccionado = productos.find(producto => String(producto.IDProducto) === String(idProducto));
 
     
-    if (!productoSeleccionado) {
-        console.log('Producto no encontrado:', idProducto); // Para depurar si no se encuentra el producto
-        alert("No encontrado"); // Cambié el mensaje a "No encontrado" para mayor claridad.
-        return;
-    }
 
     // Asegurarnos de que el precio es un número
     productoSeleccionado.Precio = parseFloat(productoSeleccionado.Precio);
@@ -404,9 +399,17 @@ function actualizarCarrito() {
             <div class="col-md-6"><strong>Total:</strong></div>
             <div class="col-md-6 text-end "><strong>$${total.toFixed(2)}</strong></div>
         </div>
+        <div id="BotonesCarrito" class="row mt-3">
+            <div class="col-md-6">
+                <button class="botones finalizar-compra">Finalizar compra</button>
+            </div>
+            <div class="col-md-6 text-end">
+                <button class="botones cancelar-compra">Cancelar compra</button>
+            </div>
+        </div>
     `;
 
-    // 🔹 Agregar eventos dinámicamente
+    // Agregar eventos dinámicamente
     document.querySelectorAll(".peso-input").forEach(input => {
         input.addEventListener("change", (event) => {
             const index = event.target.dataset.index;
@@ -421,7 +424,20 @@ function actualizarCarrito() {
             actualizarCarrito(); // Vuelve a renderizar el carrito después de eliminar
         });
     });
+
+    // Evento para finalizar compra
+    document.querySelector(".finalizar-compra").addEventListener("click", () => {
+        carrito = []; // Vaciar el carrito
+        actualizarCarrito(); // Refrescar la vista
+    });
+
+    // Evento para cancelar compra
+    document.querySelector(".cancelar-compra").addEventListener("click", () => {
+            carrito = []; // Vaciar el carrito
+            actualizarCarrito(); // Refrescar la vista
+    });
 }
+
 
 
 // Función para cambiar el peso de un producto en el carrito
@@ -534,7 +550,6 @@ async function guardarModificaciones(idProducto) {
             throw new Error("Error al modificar el producto");
         }
 
-        alert("Producto modificado con éxito");
         getAllProductos();  // Actualizamos la lista de productos después de la modificación
     } catch (error) {
         console.log(error);
